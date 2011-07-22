@@ -1,0 +1,53 @@
+\part{Theoretische Grundlagen}
+\label{sec:theory}
+
+\section{Web Performance}
+\epigraph{``Human beings don’t like to wait. We don’t like waiting in line at a store, we don’t like waiting for our food at a restaurant, and we definitely don’t like waiting for Web pages to load.''}{Alberto Savoia}
+
+Web Performance ist in der letzten Zeit ein immer präsenteres Thema geworden. Aber was bedeutet Web Performance eigentlich? Zum einen gibt es die subjektive Performance die ein Besucher beim Browsen einer Webseite empfindet. Zum anderen kann man auch eine objektive Aussage über die Geschwindigkeit mit der eine Webseite generiert, ausgeliefert und beim Besucher im Browser angezeigt wird treffen.
+\subsection{Usability}
+Web Performance hat einen großen Einfluss auf die Bedienbarkeit von Webseiten. Ohne die starke Verbesserung ihrer Performance hätte Google mit GMail und ihren anderen Web Applikationen keinen Erfolg erzielen können. Nur wenn eine Anwendung auch in einer akzeptablen Geschwindigkeit auf Benutzerinteraktionen reagieren kann hat sie eine Chance auf dem Markt zu bestehen.
+Für Unternehmen gibt es noch weitere Faktoren die evaluiert werden müssen:
+\begin{itemize}
+ \item langsamere Webseiten führen zu Vertrauensverlust
+ \item empfundenem Qualitätsverlust
+ \item niedrigere Konversionsraten
+ \item höhere Bailoutraten
+ \item Nutzerfrustration
+\end{itemize}
+
+
+%TODO quelle?
+\subsection{Google Ranking}
+Für Internetfirmen ist es von immenser Bedeutung gefunden zu werden. Ein Großteil der Internetnutzer suchen Angebote über die Google-Suche. Google hat mit ihrer Initiative ``Let's make the web faster'' für viel Entwicklung und Aktivität im Bereich Web Performance gesorgt und arbeitet zielgerichtet weiter in diese Richtung. Dazu gehört seit  2008 Google AdWords und seit 2010 die Google Suche selbst. Dies stellt viele Unternehmen vor die Aufgabe ihre Webseite zu optimieren und zu beschleunigen um im Google Ranking konkurrenzfähig zu bleiben. Google selbst gibt als Vorgabe 1,5 Sekunden Ladezeit in den Google Webmaster Tools vor.
+%TODO bild?
+
+\subsection{Serverlast}
+Eine umfassende Verbesserung der Auslieferungszeiten von Webseiten hat direkten Einfluss auf die Serverperformance, wie man leicht ermitteln kann. Wenn eine Webseite nur noch die Hälfte der Zeit benötigt um ausgeliefert zu werden, hat man doppelt soviel Auslieferungskapazität zur Verfügung. Das spart Kosten für Server und in geringerem Maße Traffic. Bestimmte Techniken ermöglichen auch einen Großteil an Prozessorlast einzusparen, der dann für andere Aufgaben zur Verfügung steht.
+
+\section{Performance Bottlenecks}
+Performance Bottlenecks oder auch Performance Flaschenhälse genannt beschreiben Schwachpunkte in einem Datenverarbeitungssystem. Auf Web Performance Angewendet kann man das in Clientseitige Probleme und Serverseitige Probleme unterteilen.
+\subsection{Clientseitige Bottelnecks}
+\subsubsection{Netzwerkverbindung}Die Schwachstelle Netzwerkverbindung kann auch auf Serverseite auftreten, aber da kann mit mehr Servern und besseren Anbindungen Abhilfe geschafft werden. Viel Problematischer wird das auf der Clientseite da selten bekannt ist mit welcher Anbindung Nutzer eine Webseite besuchen werden.%TODO bild netzwerk
+Da in Deutschland der Breitbandausbau noch lange kein Stadium erreicht hat, der es Webseitenbetreibern erlauben würde auf die Größe der Webseite die sie an ihre Betrachter ausliefern keinen Wert zu legen. Der Breitbandausbau peilt für 2011 eine 100 prozentige Versorgung mit 1 Mbit/s an und so sind noch viele Nutzer sind noch mit langsamen Internetzugängen im Internet unterwegs. 
+
+\subsubsection{Browser}
+Als Schnittstelle zwischen Mensch und Webseite ist der Browser ein besonders kritischer Punkt und muss bei Web Performanceanalysen besonders beachtet werden. Zum einen müssen die verschiedenen Browserfamilien, mit ihren Eigenheiten und Problemen und zum anderen die Tatsache das ein Browser nur so schnell arbeiten kann, wie der Computer auf dem er ausgeführt wird zulässt, beachtet werden. Problemzonen sind:
+\begin{itemize}
+ \item Anzahl von zu berechnenden DOM-Elementen
+\item Javascript Ausführungszeiten
+
+\end{itemize}
+
+\subsubsection{DOM Elemente}
+\subsection{Serverseitig}
+\subsubsection{Datenbankabfragen}
+\subsubsection{Skriptausführung}
+\subsubsection{Skriptkompilierung}
+
+
+
+
+
+%\input{parts/02-1}
+%\input{parts/02-2}
