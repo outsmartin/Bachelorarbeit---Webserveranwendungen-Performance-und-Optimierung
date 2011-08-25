@@ -4,10 +4,10 @@
 \section{Web Performance}
 \epigraph{``Human beings don’t like to wait. We don’t like waiting in line at a store, we don’t like waiting for our food at a restaurant, and we definitely don’t like waiting for Web pages to load.''}{Alberto Savoia}
 
-Web Performance ist in der letzten Zeit ein immer präsenteres Thema geworden. Aber was bedeutet Web Performance eigentlich? Zum einen gibt es die subjektive Performance die ein Besucher beim Browsen einer Webseite empfindet. Zum anderen kann man auch eine objektive Aussage über die Geschwindigkeit mit der eine Webseite generiert, ausgeliefert und beim Besucher im Browser angezeigt wird treffen.
+Web Performance ist in der letzten Zeit ein immer präsenteres Thema geworden. Aber was bedeutet Web Performance eigentlich? Zum einen gibt es die subjektive Performance, die ein Besucher beim Browsen einer Webseite empfindet. Zum anderen kann man auch eine objektive Aussage über die Geschwindigkeit mit der eine Webseite generiert, ausgeliefert und beim Besucher im Browser angezeigt wird, treffen.
 \subsection{Usability}
-Web Performance hat einen großen Einfluss auf die Bedienbarkeit von Webseiten. Ohne die starke Verbesserung ihrer Performance hätte Google mit GMail und ihren anderen Web Applikationen keinen Erfolg erzielen können. Nur wenn eine Anwendung auch in einer akzeptablen Geschwindigkeit auf Benutzerinteraktionen reagieren kann hat sie eine Chance auf dem Markt zu bestehen.
-Für Unternehmen gibt es noch weitere Faktoren die evaluiert werden müssen:
+Web Performance hat einen großen Einfluss auf die Bedienbarkeit von Webseiten. Ohne die starke Verbesserung ihrer Performance hätte Google mit GMail und ihren anderen Web Applikationen keinen Erfolg erzielen können. Nur wenn eine Anwendung auch in einer akzeptablen Geschwindigkeit auf Benutzerinteraktionen reagieren kann, hat sie eine Chance auf dem Markt zu bestehen.
+Für Unternehmen gibt es noch weitere Faktoren, die evaluiert werden müssen:
 \begin{itemize}
  \item langsamere Webseiten führen zu Vertrauensverlust
  \item empfundenem Qualitätsverlust
@@ -19,18 +19,25 @@ Für Unternehmen gibt es noch weitere Faktoren die evaluiert werden müssen:
 
 %TODO quelle?
 \subsection{Google Ranking}
-Für Internetfirmen ist es von immenser Bedeutung gefunden zu werden. Ein Großteil der Internetnutzer suchen Angebote über die Google-Suche. Google hat mit ihrer Initiative ``Let's make the web faster'' für viel Entwicklung und Aktivität im Bereich Web Performance gesorgt und arbeitet zielgerichtet weiter in diese Richtung. Dazu gehört seit  2008 Google AdWords und seit 2010 die Google Suche selbst. Dies stellt viele Unternehmen vor die Aufgabe ihre Webseite zu optimieren und zu beschleunigen um im Google Ranking konkurrenzfähig zu bleiben. Google selbst gibt als Vorgabe 1,5 Sekunden Ladezeit in den Google Webmaster Tools vor. 
+Für (Internet-)Firmen ist es von immenser Bedeutung gefunden zu werden. Ein Großteil der Internetnutzer sucht Angebote über die Google-Suche. Google hat mit ihrer Initiative ``Let's make the web faster'' für viel Entwicklung und Aktivität im Bereich Web Performance gesorgt und arbeitet zielgerichtet weiter in diese Richtung. Dazu gehört seit  2008 Google AdWords und seit 2010 die Google Suche selbst. Dies stellt viele Unternehmen vor die Aufgabe, ihre Webseite zu optimieren und zu beschleunigen, um im Google Ranking konkurrenzfähig zu bleiben. Wie genau Google die Webseiten testet, ist nur zum Teil bekannt, da diese Informationen zu Googles Geschäftsgeheimnissen gehören. Es finden sich aber einige Fakten, die bei der Optimierung für die Google Suche, im Bereich Web Performance, helfen können.
+Bekannt ist dass:
+- der Google Suchmaschinen Bot nichts mit der Geschwindigkeitsmessung zu tun hat.
+- Google nur Daten von echten Nutzern, die die Google Toolbar in ihrem Browser installiert haben, nutzt.
+- Daten nur für Internet Explorer ab Version 6 und Firefox ab Version 2 verfügbar sind
+- die Onload Zeit gemessen wird.
+- das verzögerte Nachladen von Inhalten zu einem besseren Ergebnis führt, da die Onload Zeit verbessert wird.
+%
 %TODO bild?
 %%http://www.webperformancetoday.com/2011/08/05/faqs-google-seo-search-ranking-website-speed/
 
 \subsection{Serverlast}
-Eine umfassende Verbesserung der Auslieferungszeiten von Webseiten hat direkten Einfluss auf die Serverperformance, wie man leicht ermitteln kann. Wenn eine Webseite nur noch die Hälfte der Zeit benötigt um ausgeliefert zu werden, hat man doppelt soviel Auslieferungskapazität zur Verfügung. Das spart Kosten für Server und in geringerem Maße Traffic. Bestimmte Techniken ermöglichen auch einen Großteil an Prozessorlast einzusparen, der dann für andere Aufgaben zur Verfügung steht.
+Eine umfassende Verbesserung der Auslieferungszeiten von Webseiten hat direkten Einfluss auf die Serverperformance, wie man leicht ermitteln kann. Wenn eine Webseite nur noch die Hälfte der Zeit benötigt, um ausgeliefert zu werden, hat man doppelt soviel Auslieferungskapazität zur Verfügung. Das spart Kosten für Server und in geringerem Maße Traffic. Bestimmte Techniken ermöglichen auch einen Großteil an Prozessorlast einzusparen, der dann für andere Aufgaben zur Verfügung steht.
 
 \section{Performance Bottlenecks}
-Performance Bottlenecks oder auch Performance Flaschenhälse genannt beschreiben Schwachpunkte in einem Datenverarbeitungssystem. Auf Web Performance Angewendet kann man das in Clientseitige Probleme und Serverseitige Probleme unterteilen.
-\subsection{Clientseitige Bottelnecks}
-\subsubsection{Netzwerkverbindung}Die Schwachstelle Netzwerkverbindung kann auch auf Serverseite auftreten, aber da kann mit mehr Servern und besseren Anbindungen Abhilfe geschafft werden. Viel Problematischer wird das auf der Clientseite da selten bekannt ist mit welcher Anbindung Nutzer eine Webseite besuchen werden.%TODO bild netzwerk
-Da in Deutschland der Breitbandausbau noch lange kein Stadium erreicht hat, der es Webseitenbetreibern erlauben würde auf die Größe der Webseite die sie an ihre Betrachter ausliefern keinen Wert zu legen. Der Breitbandausbau peilt für 2011 eine 100 prozentige Versorgung mit 1 Mbit/s an und so sind noch viele Nutzer sind noch mit langsamen Internetzugängen im Internet unterwegs. 
+Performance Bottlenecks oder auch Performance Flaschenhälse genannt, beschreiben Schwachpunkte in einem Datenverarbeitungssystem. Auf Web Performance angewendet, kann man das in clientseitige Probleme und serverseitige Probleme unterteilen.
+\subsection{Clientseitige Bottlenecks}
+\subsubsection{Netzwerkverbindung}Die Schwachstelle Netzwerkverbindung kann auch auf Serverseite auftreten, aber da kann mit mehr Servern und besseren Anbindungen Abhilfe geschafft werden. Viel problematischer wird das auf der Clientseite da selten bekannt ist mit welcher Anbindung Nutzer eine Webseite besuchen werden.%TODO bild netzwerk
+Da in Deutschland der Breitbandausbau noch lange kein Stadium erreicht hat, der es Webseitenbetreibern erlauben würde auf die Größe der Webseite die sie an ihre Betrachter ausliefern keinen Wert zu legen. Der Breitbandausbau peilt für 2011 eine 100 prozentige Versorgung mit 1 Mbit/s an und so sind noch viele Nutzer sind mit langsamen Internetzugängen im Internet unterwegs. 
 
 \subsubsection{Browser}
 Als Schnittstelle zwischen Mensch und Webseite ist der Browser ein besonders kritischer Punkt und muss bei Web Performanceanalysen besonders beachtet werden. Zum einen müssen die verschiedenen Browserfamilien, mit ihren Eigenheiten und Problemen und zum anderen die Tatsache das ein Browser nur so schnell arbeiten kann, wie der Computer auf dem er ausgeführt wird zulässt, beachtet werden. Problemzonen sind:
@@ -51,7 +58,7 @@ Als Schnittstelle zwischen Mensch und Webseite ist der Browser ein besonders kri
 \section{Technologiestack und Optimierungsmöglichkeiten}
 Im Rahmen dieser Bachelorarbeit werden verschiedenste Technologien verwendet und auf ihnen aufbauende Werkzeuge zu Hilfe genommen. Um zu verstehen wo Probleme lokalisiert sind und wie solche Schwachstellen zu finden sind muss man sich mit dem vorhandenem Technologiestack auseinandersetzen und ihn analysieren.
 \begin{description}
-  \item[Server] Ein Server ist ein Computer der Informationen und Dienste für andere Computer zur Verfügung stellt
+  \item[Server] Ein Server ist ein Computer, der Informationen und Dienste für andere Computer zur Verfügung stellt
   \item[Betriebssystem] Die Software die auf dem Server läuft. In der pludoni GmbH wird das Linuxderivat Debian eingesetzt.
   \item[Datenbank] Als Datenbank wird eine strukturierte Sammlung von Daten bezeichnet. MySQL ist hier die erste Wahl.
   \item[Web Server] Der Web Server ist für die zuverlässige Auslieferung von Webseiten zuständig. Er beantwortet die Anfragen die die Nutzer mit dem Browser stellen. Apache2 wird dafür in der pludoni GmbH eingesetzt.
@@ -72,7 +79,7 @@ Drupal ist ein Content-Management-System, dass heißt es ermöglicht dem Nutzer 
 Die Methoden zur Leistungssteigerung können wie im Technologiestack untergliedert werden und jedes Element muss für sich betrachtet werden.
 
 \begin{description}
-  \item[Server] Die einzige Parameter der am Server verbessert werden kann ist seine Leistung, dass heißt Datendurchsatz und Rechengeschwindigkeit. Dies geschieht durch CPU Upgrades oder Arbeitsspeichererweiterung. Weitergehend kann man die Festplattenzugriffsgeschwindigkeiten durch RAID Verbünde und neue Technologien wie SSD Speicher verbessern. 
+  \item[Server] Der einzige Parameter der am Server verbessert werden kann ist seine Leistung, dass heißt Datendurchsatz und Rechengeschwindigkeit. Dies geschieht durch CPU Upgrades oder Arbeitsspeichererweiterung. Weitergehend kann man die Festplattenzugriffsgeschwindigkeiten durch RAID Verbünde und neue Technologien wie SSD Speicher verbessern. 
   \item[Betriebssystem] Ansatzpunkte für Verbesserungen auf Betriebssystemebene sind Memory-Mapping, dass heißt Speicherbereiche die normalerweise auf der Festplatte liegen werden in den Arbeitsspeicher umgelagert um die Latenzen zu verringern. Dies wird genutzt um Caches zu beschleunigen, die normalerweise von der Festplatte lesen.
   \item[Datenbank] Auf Datenbankebene kann im Fall von MySQL nur beschränkt optimiert werden. Zum einen sind Indizes anzulegen bei häufig genutzten Tabellen und zum anderen kann man MyISAM statt InnoDB nutzen um Performanter zu sein.
   \item[Web Server] Optimierungen am Webserver sind sehr schwierig da die Webserver Performance hauptsächlich von der Serverleistung abhängt. Die Anzahl der gleichzeitigen Zugriffe wird maßgeblich durch den verfügbaren Arbeitsspeicher und die verfügbare Bandbreite eingeschränkt.
@@ -85,261 +92,5 @@ Die Methoden zur Leistungssteigerung können wie im Technologiestack untergliede
 %\input{parts/02-1}
 %\input{parts/02-2}
 
-\part{Praxisteil}
-Versuchsaufbau:
-
-Testplattform: pludoni Server eq4
-Prozessor: Intel® Core™ i7-920
-Arbeitsspeicher: 8 GB DDR3 RAM
-Festplatten: 2 x 750 GB SATA-II HDD (Software-RAID 1)
-Netzwerkverbindung: 100Mbit
-
-Livesystem: pludoni Server 
-Prozessor: Intel® Core™2 Quad CPU Q6600 @ 2.4 Ghz
-Arbeitsspeicher: 4 GB DDR3 RAM
-Festplatten: 2 x 750 GB SATA-II HDD (Software-RAID 1) %TODO aktualisieren
-Netzwerkverbindung: 100Mbit
-
-Testclient: Virtualbox
-Firefox 5
-
-Testobjekt:
-Itsax Startseite
-
-%TODO Bilder einfügen aus materials
-
-text/css24
-image/gif	22
-image/jpeg	22
-javascript	20
-image/png	15
-text/html	3
-
-image/jpeg	142251
-image/png	101428
-javascript	84758
-image/gif	73378
-text/css	30222
-text/html	29917
-
-
-Ausgangssituation:
-Server Software:        Apache/2.2.16
-Server Hostname:        itsax.it-jobs-und-stellen.de
-Server Port:            80
-
-Document Path:          /
-Document Length:        65218 bytes
-
-Concurrency Level:      1
-Time taken for tests:   18.182 seconds
-Complete requests:      50
-
-Write errors:           0
-Total transferred:      3266726 bytes
-HTML transferred:       3239226 bytes
-Requests per second:    2.75 [\#/sec] (mean)
-Time per request:       363.640 [ms] (mean)
-Time per request:       363.640 [ms] (mean, across all concurrent requests)
-Transfer rate:          175.46 [Kbytes/sec] received
-
-
-Mit APC aktiviert:
-Server Software:        Apache/2.2.16
-Server Hostname:        itsax.it-jobs-und-stellen.de
-Server Port:            80
-
-Document Path:          /
-Document Length:        64842 bytes
-
-Concurrency Level:      1
-Time taken for tests:   11.681 seconds
-Complete requests:      50
-
-Write errors:           0
-Total transferred:      3261730 bytes
-HTML transferred:       3234230 bytes
-Requests per second:    4.28 [\#/sec] (mean)
-Time per request:       233.620 [ms] (mean)
-Time per request:       233.620 [ms] (mean, across all concurrent requests)
-Transfer rate:          272.69 [Kbytes/sec] received
-
-Mit Drupal Cache in normal Einstellung:
-Server Software:        Apache/2.2.16
-Server Hostname:        itsax.it-jobs-und-stellen.de
-Server Port:            80
-
-Document Path:          /
-Document Length:        65005 bytes
-
-Concurrency Level:      1
-Time taken for tests:   2.082 seconds
-Complete requests:      50
-Failed requests:        0
-Write errors:           0
-Total transferred:      3276900 bytes
-HTML transferred:       3250250 bytes
-Requests per second:    24.02 [\#/sec] (mean)
-Time per request:       41.638 [ms] (mean)
-Time per request:       41.638 [ms] (mean, across all concurrent requests)
-Transfer rate:          1537.09 [Kbytes/sec] received
-
-Mit Drupal Cache in aggressiv Einstellung:
-
-
-
-Test von Serverunabhängigen verbesserungen:
-über das Analysetool von webpagetest.org
-Testverfahren: 10 konsekutive Tests (maximum) der Durschnittlichste Testlauf wird betrachtet
-Teststandort Frankfurt a. M.
-Browser: IE9
-Connection: DSL 1,5 Mbps / 50ms RTT
-Only First View
-Ausgangszustand:
-Load Time: 3.728
-Time to First Byte: 0.674s 	
-Time to Start Render: 2.002s
-\#DOM Elements: 855 	
-\#Requests: 106
-Bytes In: 444 KB
-%http://www.webpagetest.org/result/110809_BH_198S4/
-
-JS Aggregation und Minifizierung mit dem Javascript Aggregation Modul:
-Load Time: 3.658s
-Time to First Byte: 0.595s
-Time to Start Render: 1.915s
-\#DOM Elements: 844 	
-\#Requests: 95 %!
-Bytes In: 432 KB
-%http://www.webpagetest.org/result/110809_Z1_198TK/
-
-CSS Aggregation und Komprimierung:
-Load Time: 3.577s
-Time to First Byte: 0.649s
-Time to Start Render: 1.577s
-\#DOM Elements: 834 	
-\#Requests: 85 %!
-Bytes In: 427 KB
-%http://www.webpagetest.org/result/110809_XB_198VE/
-
-Drupal Boost Module:
-Load Time: 3.233s
-Time to First Byte: 0.172s %!
-Time to Start Render: 1.473s
-\#DOM Elements: 856 	
-\#Requests: 106 %!
-Bytes In: 444 KB
-%http://www.webpagetest.org/result/110809_AP_198XJ/
-
-Bildoptimierungen mit jpegoptim und OptiPNG verlustfrei!: 
-Bilder und Grafiken bieten oft großen Optimierungsspielraum, zum einen durch die richtige Auswahl der Dateiformate und zum Anderem durch Komprimierung der Bilder. Da es auf www.itsax.de nicht nur statische Inhalte gibt sondern auch durch Communitymitglieder und Communitymanager eingestellte Inhalte verwaltet werden müssen, sollte eine nachträgliche Qualitätsoptimierung der hochgeladenen Bilder durchgeführt werden. Um dies umzusetzen sind die Programme OptiPNG und jpegOptim zu empfehlen. Auf jeden Fall sollte eine verlustfreie Komprimierung durchgeführt werden, da die Bilder in diesem Fall nur an Dateigröße verlieren und die Bildqualität unberührt bleibt. Da es sich bei beiden Programmen um Kommandozeilenprogramme handelt kann man ihre Anwendung leicht automatisieren. Mit dem Linuxbefehl find, der praktischerweise eine Möglichkeit Befehle auszuführen besitzt, kann man direkt die entsprechenden Dateien an die Optimierer übergeben. Diese Aktionen können dann über einen Cronjob periodisch jede Nacht ausgeführt werden. Die Befehle sehen dann wie folgt aus: 
-find . -name "*.png" -exec optipng -o7 {} \;
-find . -name "*.jpg" -exec jpegoptim {} \;
-
-%%http://optipng.sourceforge.net/
-%%http://www.kokkonen.net/tjko/projects.html
-
-Load Time: 3.640
-Time to First Byte: 0.636s %!
-Time to Start Render: 1.894s
-\#DOM Elements: 855 	
-\#Requests: 106 %!
-Bytes In: 429 KB % 15kb gespart
-%http://www.webpagetest.org/result/110809_C4_1999C/
-
-Bildoptimierungen mit OptiPNG verlustfrei und mit jpegoptim verlustbehaftet! 50\% kompression:
-find . -name "*.png" -exec optipng -o7 {} \;
-find . -name "*.jpg" -exec jpegoptim {} \;
-
-Load Time: 3.255s
-Time to First Byte: 0.669s %!
-Time to Start Render: 1.908s
-\#DOM Elements: 855 	
-\#Requests: 106 %!
-Bytes In: 371 KB % 73kb gespart
-%http://www.webpagetest.org/result/110809_15_199GY/
-
-Drupal 5 Fehler bei umgefärbten Themes:
-Das Framework Drupal 5 benutzt Themes zu Gestaltung der Oberfläche, um diese farblich anpassen zu können wurde das Color Modul installiert, welches Themeveränderungen ermöglicht. Dadurch das das Theme nur kopiert und die Farben geändert werden entstehen bei diesem Vorgang unnötige Duplikate die beim Laden der Seite mitgeschleppt werden. Um diese zu Entfernen wird einfach das Standardtheme durch das Modifizierte ersetzt. Dafür müssen  nur noch einige Pfade in der style.css angepasst werden und man spart in dem fall von itsax.de 4 kb, was immerhin ca 1\% der übertragenen Datenmenge ausmacht.
-händisch gemergte styles
-style auf standard setzen
-vorher die images und das geänderte stylesheet kopieren
-Load Time: 3.626s
-Time to First Byte: 0.629s %!
-Time to Start Render: 1.890s
-\#DOM Elements: 854 	
-\#Requests: 104 %!
-Bytes In: 440 KB % 4kb gespart
-%http://www.webpagetest.org/result/110809_SZ_19APH/
-
-Theme Bilder Spriten:
-Spriting wurde ursprünglich in der Videospielentwicklung verwendet um Bilder in der Grafikspeicher zu laden. In der Webentwicklung ist es eine effektive Technik um Bilder ohne mehrfachen Overhead zu laden. Beim Spriting wird aus vielen einzelnen Bildern ein einziges Bild erstellt, dass anstelle der vielen Bilder geladen wird. Um die Bilder dann noch einzeln Anzeigen zu können werden CSS Befehle genutzt, die es ermöglichen die Größe und die Position eines Bildausschnittes anzuzeigen. 
-Load Time: 3.707
-Time to First Byte: 0.669s %!
-Time to Start Render: 1.968s
-\#DOM Elements: 855 	
-\#Requests: 103 
-Bytes In: 443 KB 
-%http://www.webpagetest.org/result/110810_FZ_19GBA/
-
-Verschiedene Module von Startseite entfernen:
-Um zu überprüfen welchen Einfluss verschiedene, im Netzwerkgraphen auffällige Module auf die Gesamtperformance haben werden sie Testweise komplett deaktiviert. So kann man entscheiden bei welchen Module zusätzlicher Programmieraufwand lohnenswert ist.
-Partnerslideshow:
-Load Time: 2.695s
-Time to First Byte: 0.636s %!
-Time to Start Render: 1.838s
-\#DOM Elements: 790 	
-\#Requests: 80 
-Bytes In: 276 KB
-%http://www.webpagetest.org/result/110810_JT_19HS5/
-
-facebook fenster:
-Load Time: 3.478s
-Time to First Byte: 0.668s %!
-Time to Start Render: 1.966s
-\#DOM Elements: 779 	
-\#Requests: 95 
-Bytes In: 406 KB 
-%http://www.webpagetest.org/result/110810_63_19HZT/
-
-Jobleiste deaktiviert:
-Load Time: 3.367s
-Time to First Byte: 0.617s %!
-Time to Start Render: 1.709s
-\#DOM Elements: 822 	
-\#Requests: 94 
-Bytes In: 411 KB
-%http://www.webpagetest.org/result/110810_4F_19J8H/
-
-Umprogrammierung verschiedener Module: Um die langsamen Module weiterhin nutzen zu können muss eine Lösung gefunden werden, die es ermöglicht Inhalte nachzuladen nachdem die Seite komplett geladen wurde. Um das zu erreichen kann man mit der Hilfe von Javascript bestimmte DOM Elemente über einen Timeoutbefehl erst nachdem der Browser gemeldet hat, er hat die Seite fertig geladen, werden die Inhalte nachgeladen.
-Partnerslideshow:
-Load Time: 2.749s (3.794)
-Time to First Byte: 0.626s %!
-Time to Start Render: 1.842s
-\#DOM Elements: 855 	
-\#Requests: 82 (107)
-Bytes In: 284 KB (395)
-%http://www.webpagetest.org/result/110810_3Z_19MRE/
-
-facebook fenster:
-Load Time: 3.411s (4.258)
-Time to First Byte: 0.576s %!
-Time to Start Render: 1.848s
-\#DOM Elements: 857
-\#Requests: 95 (106)
-Bytes In: 406 KB (444)
-%http://www.webpagetest.org/result/110810_AJ_19N72/
-
-Partneranzeigen:
-Load Time: 3.871s (5.759s)
-Time to First Byte: 0.669s %!
-Time to Start Render: 2.255s
-\#DOM Elements: 857 	
-\#Requests: 105 (108)
-Bytes In: 417 KB (448)
-%http://www.webpagetest.org/result/110815_N6_1AWKT/1/details/
-
-
-Komplett alle Maßnahmen:
 
 
