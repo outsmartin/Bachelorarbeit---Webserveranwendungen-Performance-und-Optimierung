@@ -295,16 +295,15 @@ drupal_add_js('
   }
 }', 'inline')
 \end{lstlisting}
-An das document Objekt, was die Webseite verkörpert, wird ein 
-Load Time: 2.749s (3.794)
-Time to First Byte: 0.626s %!
-Time to Start Render: 1.842s
-\#DOM Elements: 855 	
-\#Requests: 82 (107)
-Bytes In: 284 kB (395)
+An das window Objekt, was die Webseite verkörpert, wird in Zeile 3 ein Timer gehängt. Der Timer löst nach 500 ms einen Callback aus, durch den die Funktion delayed_partnerbox ausgeführt wird. Durch diese Verlagerung des Inhalts braucht die Webseite nur noch 2.749s zum laden. Bis die Webseite die nachgeladene Slideshow anzeigt vergehen 3.794s. Die Webseite ist also eher benutzbar und später komplett geladen. In Testverfahren wie zum Beispiel für das Google Ranking wird nur betrachtet wann die Seite das Onload Event auslöst. Somit wurde die Seite für Google und den Nutzer schneller. Der Performancegewinn geht wie in der vorherigen Analyse festgestellt aus der verringerten Datenmenge hervor. Natürlich spielt auch die Reduzierung der HTTP Anfragen eine Rolle. Die Datenmenge wurde auf 284 kB verringert und es wurden statt 107 nur 82 HTTP Anfragen benötigt.
+%Time to First Byte: 0.626s %!
+%Time to Start Render: 1.842s
+%\#DOM Elements: 855 	
+%\#Requests: 82 (107)
+%Bytes In: 284 kB (395)
 %http://www.webpagetest.org/result/110810_3Z_19MRE/
 
-\subsubsection{facebook fenster}
+\subsubsection{Facebook Widget} Das Facebook Widget 
 Load Time: 3.411s (4.258)
 Time to First Byte: 0.576s %!
 Time to Start Render: 1.848s
