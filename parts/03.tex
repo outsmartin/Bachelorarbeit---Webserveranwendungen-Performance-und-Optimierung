@@ -276,7 +276,7 @@ Bytes In: 411 kB
 Um die langsamen Module weiterhin nutzen zu können, muss eine Lösung gefunden werden, die es ermöglicht, Inhalte nachzuladen, nachdem die Seite komplett geladen wurde. Um diese Asynchronität zu erreichen, wird mit Hilfe eines Timeout-Befehls, das Laden der nicht priorisierten Inhalte verzögert. Programmiert wird dieses Verhalten mit Javascript, genauer JQuery. Besonders betrachtet werden muss dabei, ob eine vorhandene Dynamik erhalten bleiben soll. Dazu gehören zum Beispiel zufällige Elemente oder Elemente mit besonders häufigen Aktualisierungen.
 
 \subsubsection{Partnerslideshow} Die Partnerslideshow ist eher ein kosmetisches Element der Startseite und für den Nutzer nicht notwendig. Daher kann es so Programmiert werden, dass beim Laden nur ein leeres DIV übergeben wird. Dann wird ein Timeout gestartet und bei der Aktivierung des Timeoutevents wird das DIV mit den Slideshowelementen gefüllt, und die Slideshow gestartet. Der Code wurde dahingehend angepasst, dass anstatt den HTML Code in der Seite einzufügen er in eine Javascript Variable geschrieben wird. Dadurch ist es möglich über eine DOM Manipulation den HTML Code später einzufügen. Das stellt sich dann wie im folgenden Codeaussschnitt dar.
-\begin{lstlisting}[language=php,label=Javascript wird eingefügt für die Slideshow,caption=Javascript wird eingefügt für die Slideshow]
+\begin{lstlisting}[language=php,label=Javascript - Slideshow,caption=Javascript - Slideshow]
 drupal_add_js('
   if (Drupal.jsEnabled) {
   $(document).ready(function() {
@@ -295,7 +295,7 @@ drupal_add_js('
   }
 }', 'inline')
 \end{lstlisting}
-An das window Objekt, was die Webseite verkörpert, wird in Zeile 3 ein Timer gehängt. Der Timer löst nach 500 ms einen Callback aus, durch den die Funktion delayed_partnerbox ausgeführt wird. Durch diese Verlagerung des Inhalts braucht die Webseite nur noch 2.749s zum laden. Bis die Webseite die nachgeladene Slideshow anzeigt vergehen 3.794s. Die Webseite ist also eher benutzbar und später komplett geladen. In Testverfahren wie zum Beispiel für das Google Ranking wird nur betrachtet wann die Seite das Onload Event auslöst. Somit wurde die Seite für Google und den Nutzer schneller. Der Performancegewinn geht wie in der vorherigen Analyse festgestellt aus der verringerten Datenmenge hervor. Natürlich spielt auch die Reduzierung der HTTP Anfragen eine Rolle. Die Datenmenge wurde auf 284 kB verringert und es wurden statt 107 nur 82 HTTP Anfragen benötigt.
+An das window Objekt, was die Webseite verkörpert, wird in Zeile 3 ein Timer gehängt. Der Timer löst nach 500 ms einen Callback aus, durch den die Funktion delayed\_partnerbox ausgeführt wird. Durch diese Verlagerung des Inhalts braucht die Webseite nur noch 2.749s zum laden. Bis die Webseite die nachgeladene Slideshow anzeigt vergehen 3.794s. Die Webseite ist also eher benutzbar und später komplett geladen. In Testverfahren wie zum Beispiel für das Google Ranking wird nur betrachtet wann die Seite das Onload Event auslöst. Somit wurde die Seite für Google und den Nutzer schneller. Der Performancegewinn geht wie in der vorherigen Analyse festgestellt aus der verringerten Datenmenge hervor. Natürlich spielt auch die Reduzierung der HTTP Anfragen eine Rolle. Die Datenmenge wurde auf 284 kB verringert und es wurden statt 107 nur 82 HTTP Anfragen benötigt.
 %Time to First Byte: 0.626s %!
 %Time to Start Render: 1.842s
 %\#DOM Elements: 855 	
