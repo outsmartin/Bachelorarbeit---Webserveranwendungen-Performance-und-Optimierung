@@ -275,7 +275,27 @@ Bytes In: 411 kB
 \subsection{Umprogrammierung der Module}
 Um die langsamen Module weiterhin nutzen zu können, muss eine Lösung gefunden werden, die es ermöglicht, Inhalte nachzuladen, nachdem die Seite komplett geladen wurde. Um diese Asynchronität zu erreichen, wird mit Hilfe eines Timeout-Befehls, das Laden der nicht priorisierten Inhalte verzögert. Programmiert wird dieses Verhalten mit Javascript, genauer JQuery. Besonders betrachtet werden muss dabei, ob eine vorhandene Dynamik erhalten bleiben soll. Dazu gehören zum Beispiel zufällige Elemente oder Elemente mit besonders häufigen Aktualisierungen.
 
-\subsubsection{Partnerslideshow} Die Partnerslideshow 
+\subsubsection{Partnerslideshow} Die Partnerslideshow ist eher ein kosmetisches Element der Startseite und für den Nutzer nicht notwendig. Daher kann es so Programmiert werden, dass beim Laden nur ein leeres DIV übergeben wird. Dann wird ein Timeout gestartet und bei der Aktivierung des Timeoutevents wird das DIV mit den Slideshowelementen gefüllt, und die Slideshow gestartet. Der Code wurde dahingehend angepasst, dass anstatt den HTML Code in der Seite einzufügen er in eine Javascript Variable geschrieben wird. Dadurch ist es möglich über eine DOM Manipulation den HTML Code später einzufügen. Das stellt sich dann wie im folgenden Codeaussschnitt dar.
+\begin{lstlisting}[language=php,label=Javascript wird eingefügt für die Slideshow,caption=Javascript wird eingefügt für die Slideshow]
+drupal_add_js('
+  if (Drupal.jsEnabled) {
+  $(document).ready(function() {
+     window.setTimeout(delayed_partnerbox,500);
+  });
+  function delayed_partnerbox(){
+	$("#projects").parent().html(partner_box_load);
+	$(".slideshow").cycle({
+	    delay:  200 ,
+	    height: "80px",
+	    width: "180px",
+	    containerResize: 0,
+	    fit: 1,
+	    fx: "fade"
+	});
+  }
+}', 'inline')
+\end{lstlisting}
+An das document Objekt, was die Webseite verkörpert, wird ein 
 Load Time: 2.749s (3.794)
 Time to First Byte: 0.626s %!
 Time to Start Render: 1.842s
@@ -303,18 +323,16 @@ Bytes In: 417 kB (448)
 %http://www.webpagetest.org/result/110815_N6_1AWKT/1/details/
 
 
-\section{Endergebnis}
-Die Ladezeiten haben sich gravierend Verbessert, weniger als die Hälfte der Zeit wird benötigt bis die Seite benutzbar ist.
-
-Load Time: 1.354s (2.913s)
-Time to First Byte: 0.173s %!
-Time to Start Render: 0.952s
-\#DOM Elements: 789 	
-\#Requests: 25 (67)
-Bytes In:  138 kB (314)
+\section{Endergebnis} 
+Nach der Zusammenführung aller Optimierungen wurde die Webseite erneut getestet. Das Ergebnis übertrifft alle Erwartungen. Nach nur einer Sekunde fängt der Browser an die Seite darzustellen. 2,913 Sekunden werden benötigt bis alle asynchronen Inhalte verfügbar sind. Auf 138 kB wurde die Webseitengröße komprimiert, so können auch langsame Internetverbindungen die Seite schnell laden. Von den 107 HTTP Anfragen sind nur noch 67 übrig geblieben, von denen werden aber nur 25 vor dem Onload Event benötigt. 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[scale=0.5]{material/end_waterfall.png}
+  \caption{Wasserfalldiagramm: Optimierte Webseite}
+  \label{fig:endwaterfall}
+\end{figure}
 %http://www.webpagetest.org/result/110825_5J_1DQHK/
 \section{Vergleich}
-
 \begin{center}
     \begin{tabular}{ | p{4cm} | p{1cm} | p{1cm} | p{6cm} |}
     \hline
@@ -330,7 +348,7 @@ Bytes In:  138 kB (314)
     Theme Bilder gesprited 	& 3,707s  & 1,968s & Spriting ist eine gute Möglichkeit Requests zu sparen, macht sich aber leider nicht stark in der Ladezeit bemerkbar.  \\ \hline
     Partnerslideshow 	& 2,749s  & 1,842s & Sehr deutlich wird die Geschwindigkeit durch das asynchrone Nachladen von Inhalten verbessern.  \\ \hline
     Facebook Widget 	& 3,411s  & 1,848s & Besonders bei Inhalten von externen Quellen ist es nützlich die Ladezeiten abzukoppeln.  \\ \hline
-    Partneranzeigen 	& 3,871s  & 2,225s & An diesem Beispiel wird deutlich das nachladen nicht umbedingt Verbesserung sein muss, trotzdem ist diese Umprogrammierung nötig um das Caching der Startseite zu ermöglichen.  \\ \hline
+    Partneranzeigen 	& 3,871s  & 2,225s & An diesem Beispiel wird deutlich das nachladen nicht unbedingt Verbesserung sein muss, trotzdem ist diese Umprogrammierung nötig um das Caching der Startseite zu ermöglichen.  \\ \hline
     \hline
     Gesamtergebnis 	& 1.354s  & 0.952s & Wenn alle Verbesserungen auf einmal aktiviert werden wird die Webseite dramatisch beschleunigt.  \\ \hline
     
