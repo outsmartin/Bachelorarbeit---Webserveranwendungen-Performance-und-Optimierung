@@ -1,0 +1,54 @@
+\select@language {ngerman}
+\contentsline {part}{\numberline {I}Einleitung}{4}{part.2}
+\contentsline {section}{\numberline {1}Motivation}{4}{section.3}
+\contentsline {subsection}{\numberline {1.1}pludoni GmbH}{4}{subsection.4}
+\contentsline {subsection}{\numberline {1.2}Ziel}{5}{subsection.5}
+\contentsline {section}{\numberline {2}Aufbau}{5}{section.6}
+\contentsline {part}{\numberline {II}Theoretische Grundlagen}{6}{part.7}
+\contentsline {subsection}{\numberline {2.1}Usability}{6}{subsection.8}
+\contentsline {subsection}{\numberline {2.2}Google Ranking}{6}{subsection.9}
+\contentsline {subsection}{\numberline {2.3}Serverlast}{7}{subsection.10}
+\contentsline {section}{\numberline {3}Performance Bottlenecks}{7}{section.11}
+\contentsline {subsection}{\numberline {3.1}Clientseitige Bottlenecks}{7}{subsection.12}
+\contentsline {subsubsection}{\numberline {3.1.1}Netzwerkverbindung}{7}{subsubsection.13}
+\contentsline {subsubsection}{\numberline {3.1.2}Browser}{8}{subsubsection.14}
+\contentsline {subsubsection}{\numberline {3.1.3}DOM Elemente}{8}{subsubsection.15}
+\contentsline {subsection}{\numberline {3.2}Serverseitig}{8}{subsection.16}
+\contentsline {subsubsection}{\numberline {3.2.1}Datenbankabfragen}{9}{subsubsection.17}
+\contentsline {subsubsection}{\numberline {3.2.2}Skriptausf\IeC {\"u}hrung}{9}{subsubsection.18}
+\contentsline {subsubsection}{\numberline {3.2.3}Skriptkompilierung}{9}{subsubsection.19}
+\contentsline {section}{\numberline {4}Technologiestack und Optimierungsm\IeC {\"o}glichkeiten}{9}{section.20}
+\contentsline {subsection}{\numberline {4.1}Server}{10}{subsection.21}
+\contentsline {subsection}{\numberline {4.2}PHP}{10}{subsection.22}
+\contentsline {subsection}{\numberline {4.3}Drupal (5)}{10}{subsection.23}
+\contentsline {subsection}{\numberline {4.4}Benchmark - Werkzeuge}{10}{subsection.24}
+\contentsline {subsection}{\numberline {4.5}Debugger / Profiler}{10}{subsection.25}
+\contentsline {section}{\numberline {5}Methoden der Web-Performance Optimierung}{10}{section.26}
+\contentsline {part}{\numberline {III}Praxisteil}{12}{part.27}
+\contentsline {section}{\numberline {6}Versuchsaufbau}{12}{section.28}
+\contentsline {section}{\numberline {7}Testverfahren}{12}{section.29}
+\contentsline {subsection}{\numberline {7.1}Servertest}{13}{subsection.30}
+\contentsline {subsection}{\numberline {7.2}Browsertest}{13}{subsection.33}
+\contentsline {subsection}{\numberline {7.3}Andere Analyse Verfahren}{14}{subsection.34}
+\contentsline {section}{\numberline {8}Ausgangszustand}{14}{section.35}
+\contentsline {section}{\numberline {9}Implementierung und Test der einzelnen Methoden}{18}{section.55}
+\contentsline {subsection}{\numberline {9.1}APC}{18}{subsection.56}
+\contentsline {subsection}{\numberline {9.2}Drupal Cache}{19}{subsection.79}
+\contentsline {subsection}{\numberline {9.3}JS Aggregation und Minifizierung mit dem Javascript Aggregation Modul}{19}{subsection.99}
+\contentsline {subsection}{\numberline {9.4}CSS Aggregation und Komprimierung}{20}{subsection.100}
+\contentsline {subsection}{\numberline {9.5}Drupal Boost Module}{20}{subsection.101}
+\contentsline {subsection}{\numberline {9.6}Bildkompression mit jpegoptim und OptiPNG}{21}{subsection.102}
+\contentsline {subsubsection}{\numberline {9.6.1}Verlustfreie Kompression}{21}{subsubsection.103}
+\contentsline {subsubsection}{\numberline {9.6.2}Verlustbehaftete Kompression}{21}{subsubsection.107}
+\contentsline {subsection}{\numberline {9.7}Drupal 5 Fehler bei umgef\IeC {\"a}rbten Themes}{22}{subsection.108}
+\contentsline {subsection}{\numberline {9.8}Theme Bilder Spriten}{22}{subsection.109}
+\contentsline {subsection}{\numberline {9.9}Module von Startseite entfernen}{22}{subsection.110}
+\contentsline {subsubsection}{\numberline {9.9.1}Partnerslideshow}{23}{subsubsection.111}
+\contentsline {subsubsection}{\numberline {9.9.2}Facebook Widget}{23}{subsubsection.112}
+\contentsline {subsubsection}{\numberline {9.9.3}Jobleiste deaktiviert}{23}{subsubsection.113}
+\contentsline {subsection}{\numberline {9.10}Umprogrammierung der Module}{23}{subsection.114}
+\contentsline {subsubsection}{\numberline {9.10.1}Partnerslideshow}{24}{subsubsection.115}
+\contentsline {subsubsection}{\numberline {9.10.2}Facebook Widget}{25}{subsubsection.135}
+\contentsline {subsubsection}{\numberline {9.10.3}Partneranzeigen}{26}{subsubsection.151}
+\contentsline {section}{\numberline {10}Endergebnis}{28}{section.169}
+\contentsline {section}{\numberline {11}Vergleich}{31}{section.171}

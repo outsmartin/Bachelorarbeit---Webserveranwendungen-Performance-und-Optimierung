@@ -2,9 +2,7 @@
 \label{sec:theory}
 
 \section{Web Performance}
-\epigraph{``Human beings don’t like to wait. We don’t like waiting in line at a store, we don’t like waiting for our food at a restaurant, and we definitely don’t like waiting for Web pages to load.''}{Alberto Savoia}
 
-Jeder Internetnutzer hat eine gewisse Toleranz gegenüber langsamen Webseiten. Wenn er auf eine Webseite zu lange warten muss, geht er zur Konkurrenz. Um dies zu verhindern, ist Web Performance in der letzten Zeit ein immer wichtigeres Thema geworden. Aber was bedeutet Web Performance eigentlich? Zum einen gibt es die subjektive Performance, die ein Besucher beim Browsen einer Webseite empfindet. Gibt es für den Nutzer bemerkbare Wartezeiten oder reagiert die Webseite schneller als die Wahrnehmungsschwelle? Solche Kriterien sind sehr wichtig bei interaktiven Webseiten und haben auch zum Erfolg von Ajax beigetragen. Zum anderen kann man auch eine objektive Aussage über die Geschwindigkeit, mit der eine Webseite generiert, ausgeliefert und beim Besucher im Browser angezeigt wird, treffen. 
 \subsection{Usability}
 Web Performance hat einen großen Einfluss auf die Bedienbarkeit von Webseiten. Ohne die starke Verbesserung ihrer Performance hätte Google mit GMail und ihren anderen Web Applikationen keinen Erfolg erzielen können. Nur wenn eine Anwendung auch in einer akzeptablen Geschwindigkeit auf Benutzerinteraktionen reagieren kann, hat sie eine Chance auf dem Markt zu bestehen. Es gibt einige Studien, die sich mit Web Usability auseinandersetzen. Zu den Ergebnissen gehörte unter anderem, dass langsamere Webseiten zu Vertrauensverlust sowie Nutzerfrustration führen. Als weitere Konsequenz ist der empfundene Qualitätsverlust zu nennen. Die genannten Punkte führen letztendlich zu niedrigeren Konversionsraten, das heißt, dass ...+ höheren Bailoutraten
 

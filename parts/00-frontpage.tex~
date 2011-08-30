@@ -1,0 +1,53 @@
+\thispagestyle{empty}
+\begin{center}
+\begin{tabular}{lcr}
+ \Large{HTW Dresden} & \verb|       |& \multirow{3}{*}{\includegraphics[height=1.353cm]{material/htwlogo.jpg}} \\
+ \Large{Fachbereich Informatik} &  & \\
+%\ownTitleZ &  & \\
+\end{tabular}\end{center}
+\begin{center}
+
+
+\end{center}
+\begin{verbatim}
+
+
+
+
+
+\end{verbatim}
+\begin{center}
+\textbf{\LARGE{\ownTitle}}
+
+"`\ownTitleZ"'
+
+\end{center}
+\begin{verbatim}
+
+
+
+\end{verbatim}
+\begin{center}
+%\textbf{\LARGE{Wahrscheinlichkeitsrechnung und Statistik}}
+\end{center}
+\begin{verbatim}
+
+
+
+
+\end{verbatim}
+\begin{flushleft}
+\begin{tabular}{lll}
+\textbf{Autor:} & & Schneider, Martin\\
+& & \\
+\textbf{Seminargruppe} & & 08/041/02\\
+& & \\
+& & \\
+\textbf{Betreunder Professor:} & & Prof. Vogt\\
+& & \\
+& & \\
+\textbf{Datum:} & & \today\\
+
+\end{tabular}
+
+\end{flushleft}

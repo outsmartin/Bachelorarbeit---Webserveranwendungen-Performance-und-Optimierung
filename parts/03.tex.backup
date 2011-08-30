@@ -275,13 +275,7 @@ Bytes In: 411 kB
 \subsection{Umprogrammierung der Module}
 Um die langsamen Module weiterhin nutzen zu können, muss eine Lösung gefunden werden, die es ermöglicht, Inhalte nachzuladen, nachdem die Seite komplett geladen wurde. Um diese Asynchronität zu erreichen, wird mit Hilfe eines Timeout-Befehls, das Laden der nicht priorisierten Inhalte verzögert. Programmiert wird dieses Verhalten mit Javascript, genauer JQuery. Besonders betrachtet werden muss dabei, ob eine vorhandene Dynamik erhalten bleiben soll. Dazu gehören zum Beispiel zufällige Elemente oder Elemente mit besonders häufigen Aktualisierungen.
 
-\subsubsection{Partnerslideshow}
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[scale=0.5]{material/partner_slideshow.png}
-  \caption{Größe der Inhalte}
-  \label{fig:startbyte}
-\end{figure} Die Partnerslideshow ist eher ein kosmetisches Element der Startseite und für den Nutzer nicht notwendig. Daher kann es so Programmiert werden, dass beim Laden nur ein leeres DIV übergeben wird. Dann wird ein Timeout gestartet und bei der Aktivierung des Timeoutevents wird das DIV mit den Slideshowelementen gefüllt, und die Slideshow gestartet. Der Code wurde dahingehend angepasst, dass anstatt den HTML Code in der Seite einzufügen er in eine Javascript Variable geschrieben wird. Dadurch ist es möglich über eine DOM Manipulation den HTML Code später einzufügen. Das stellt sich dann wie im folgenden Codeaussschnitt dar.
+\subsubsection{Partnerslideshow} Die Partnerslideshow ist eher ein kosmetisches Element der Startseite und für den Nutzer nicht notwendig. Daher kann es so Programmiert werden, dass beim Laden nur ein leeres DIV übergeben wird. Dann wird ein Timeout gestartet und bei der Aktivierung des Timeoutevents wird das DIV mit den Slideshowelementen gefüllt, und die Slideshow gestartet. Der Code wurde dahingehend angepasst, dass anstatt den HTML Code in der Seite einzufügen er in eine Javascript Variable geschrieben wird. Dadurch ist es möglich über eine DOM Manipulation den HTML Code später einzufügen. Das stellt sich dann wie im folgenden Codeaussschnitt dar.
 \begin{lstlisting}[language=php,label=Javascript - Slideshow,caption=Javascript - Slideshow]
 drupal_add_js('
   if (Drupal.jsEnabled) {
@@ -309,13 +303,7 @@ An das window Objekt wird in Zeile 3 ein Timer gehängt. Der Timer löst nach 50
 %Bytes In: 284 kB (395)
 %http://www.webpagetest.org/result/110810_3Z_19MRE/
 
-\subsubsection{Facebook Widget}
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[scale=0.5]{material/facebook_widget.png}
-  \caption{Größe der Inhalte}
-  \label{fig:startbyte}
-\end{figure} Das Modul für das Facebook Widget wurde durch Entwickler der pludoni GmbH so programmiert, dass es das von Facebook zur Verfügung gestellte Widget cacht und dann auf der Webseite darstellt. Das Hauptproblem bei dem Widget ist  das die Profilbilder, die angezeigt werden, auf den Servern von Facebook liegen und sich somit der internen Kontrolle entziehen. Um das Modul abzukoppeln wird ein Timer analog zum vorhergehenden Modul programmiert. 
+\subsubsection{Facebook Widget} Das Modul für das Facebook Widget wurde durch Entwickler der pludoni GmbH so programmiert, dass es das von Facebook zur Verfügung gestellte Widget cacht und dann auf der Webseite darstellt. Das Hauptproblem bei dem Widget ist  das die Profilbilder, die angezeigt werden, auf den Servern von Facebook liegen und sich somit der internen Kontrolle entziehen. Um das Modul abzukoppeln wird ein Timer analog zum vorhergehenden Modul programmiert. 
 \begin{lstlisting}[language=php,label=Facebook Widget,caption=Facebook Widget]
 function facebook_show_likebox() {
   $local_path = drupal_get_path("module","facebook_pludoni");
@@ -340,14 +328,7 @@ Wieder wird als initialer Rückgabewert nur ein leeres DIV-Element ausgegeben. D
 %Bytes In: 406 kB (444)
 %http://www.webpagetest.org/result/110810_AJ_19N72/
 
-\subsubsection{Partneranzeigen}
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[scale=0.5]{material/partneranzeigen.png}
-  \caption{Größe der Inhalte}
-  \label{fig:startbyte}
-\end{figure}
-Das Partneranzeigen-Modul musste umprogrammiert werden, da die Startseite durch das Boost Modul gecacht werden soll. Caching bedeutet normalerweise die Abwesenheit dynamischer oder zufälliger Elemente. Da aber bei jedem Besuch der Webseite ein zufälliger Communitypartner angezeigt werden soll musste eine Lösung gefunden werden. Gelöst wurde das Problem durch Auslagerung des Codes in einen Callback, der unter einer anderen URI angesprochen werden kann. Das Boost Modul kann solche Inhalte auch cachen, es ist aber über einen URI Filter konfigurierbar. So kann eine performante Startseite mit Dynamischen Inhalten realisiert werden. Die Ladezeit wird durch diesen Umweg leider negativ beeinflusst, aber 100 ms sind im Verhältnis zu dem Gewinn der später erzielt wird leicht zu verschmerzen. Da in einer Drupal Umgebung gearbeitet wird, kann leicht über einen Menü hook dem System die neue URI mitgeteilt werden. Wenn sie nach dem sie bekannt gemacht wurde aufgerufen wird liefert sie den einzufügenden HTML Code aus.
+\subsubsection{Partneranzeigen} Das Partneranzeigen-Modul musste umprogrammiert werden, da die Startseite durch das Boost Modul gecacht werden soll. Caching bedeutet normalerweise die Abwesenheit dynamischer oder zufälliger Elemente. Da aber bei jedem Besuch der Webseite ein zufälliger Communitypartner angezeigt werden soll musste eine Lösung gefunden werden. Gelöst wurde das Problem durch Auslagerung des Codes in einen Callback, der unter einer anderen URI angesprochen werden kann. Das Boost Modul kann solche Inhalte auch cachen, es ist aber über einen URI Filter konfigurierbar. So kann eine performante Startseite mit Dynamischen Inhalten realisiert werden. Die Ladezeit wird durch diesen Umweg leider negativ beeinflusst, aber 100 ms sind im Verhältnis zu dem Gewinn der später erzielt wird leicht zu verschmerzen. Da in einer Drupal Umgebung gearbeitet wird, kann leicht über einen Menü hook dem System die neue URI mitgeteilt werden. Wenn sie nach dem sie bekannt gemacht wurde aufgerufen wird liefert sie den einzufügenden HTML Code aus.
 \begin{lstlisting}[language=php,label=Ajax - hook,caption=Ajax - hook]
 function partneranzeigen_menu() {
   $items = array();
@@ -360,25 +341,30 @@ function partneranzeigen_menu() {
   return $items;
 }
 \end{lstlisting}
-Eingefügt wird der HTML Code dann über eine Ajax GET Anfrage. Mit der schon bekannten Timeout Methode.
-\begin{lstlisting}[language=php,label=Ajax - GET,caption=Ajax - GET]
-function delayed_partneranzeigen(){
-  $.get('/partanz/ajax',function(data){
-    $('#partneranzeigenbox').html(data);
-});
+Eingefügt wird der HTML Code dann über eine Ajax GET Anfrage.
+\begin{lstlisting}[language=php,label=Ajax - hook,caption=Ajax - hook]
+function partneranzeigen_menu() {
+  $items = array();
+  $items[] = array(
+    'path'        => "partanz/ajax",
+    'callback'    => 'partneranzeigen_display_block_1',
+    'type'        => MENU_CALLBACK,
+    'access'      => true
+  );
+  return $items;
+}
 \end{lstlisting}
-Obwohl die Seite um 31 kB kleiner geworden ist und zwei HTTP Anfragen eingespart werden wird sie wie schon erwähnt langsamer.
-%Load Time: 3.871s (5.759s)
-%Time to First Byte: 0.669s %!
-%Time to Start Render: 2.255s
-%\#DOM Elements: 857 
-%\#Requests: 105 (108)
-%Bytes In: 417 kB (448)
+Load Time: 3.871s (5.759s)
+Time to First Byte: 0.669s %!
+Time to Start Render: 2.255s
+\#DOM Elements: 857 
+\#Requests: 105 (108)
+Bytes In: 417 kB (448)
 %http://www.webpagetest.org/result/110815_N6_1AWKT/1/details/
 
 
 \section{Endergebnis} 
-Nach der Zusammenführung aller Optimierungen wurde die Webseite erneut getestet. Nach nur einer Sekunde fängt der Browser an die Seite darzustellen. 2,913 Sekunden werden benötigt bis alle asynchronen Inhalte verfügbar sind. Auf 138 kB wurde die Webseitengröße komprimiert, so können auch langsame Internetverbindungen die Seite schnell laden. Von den 107 HTTP Anfragen sind nur noch 67 übrig geblieben, von denen werden aber nur 25 vor dem Onload Event benötigt. Dank dieser Reduzierung auf das wesentliche erwartet den Besucher nun eine subjektiv wesentlich angenehmere Webseite. 
+Nach der Zusammenführung aller Optimierungen wurde die Webseite erneut getestet. Das Ergebnis übertrifft alle Erwartungen. Nach nur einer Sekunde fängt der Browser an die Seite darzustellen. 2,913 Sekunden werden benötigt bis alle asynchronen Inhalte verfügbar sind. Auf 138 kB wurde die Webseitengröße komprimiert, so können auch langsame Internetverbindungen die Seite schnell laden. Von den 107 HTTP Anfragen sind nur noch 67 übrig geblieben, von denen werden aber nur 25 vor dem Onload Event benötigt. 
 \begin{figure}[htbp]
   \centering
   \includegraphics[scale=0.5]{material/end_waterfall.png}
