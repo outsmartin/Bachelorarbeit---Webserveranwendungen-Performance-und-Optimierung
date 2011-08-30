@@ -1,46 +1,51 @@
 \part{Praxisteil}
 
 \section{Versuchsaufbau}
-Der Optimierungsversuch kann leider nicht auf dem Livesystem durchgeführt werden, da dass die Stabilität beeinträchtigen würde. Deswegen wurde ein Entwicklungssystem genutzt, um die verschiedenen Methoden zu analysieren. Das Entwicklungssystem ist eine neuere Anschaffung der pludoni GmbH und dadurch, im Vergleich zum Livesystem, leistungsfähiger. Dadurch wird sich das Endergebnis, wenn es nach dem Abschluss der Arbeit auf das Livesystem übertragen wurde, in seinen Kenndaten unterscheiden. Trotz alledem werden die Verbesserungen relativ zum Testsystem proportional ausfallen. 
+Der Optimierungsversuch kann leider nicht auf dem Livesystem durchgeführt werden, da das die Stabilität beeinträchtigen würde. Deswegen wurde ein Entwicklungssystem genutzt, um die verschiedenen Methoden zu analysieren. Das Entwicklungssystem ist eine neuere Anschaffung der pludoni GmbH und dadurch, im Vergleich zum Livesystem, leistungsfähiger. Dadurch wird sich das Endergebnis, wenn es nach dem Abschluss der Arbeit auf das Livesystem übertragen wurde, in seinen Kenndaten unterscheiden. Trotz alledem werden die Verbesserungen relativ zum Testsystem proportional ausfallen. 
 
 \begin{itemize}
  \item Testplattform: pludoni Server eq4
-  \item Prozessor: Intel® Core™ i7-920
+  \item Prozessor: Intel® Core™ i7-920 
   \item Arbeitsspeicher: 8 GB DDR3 RAM
   \item Festplatten: 2 x 750 GB SATA-II HDD (Software-RAID 1)
   \item Netzwerkverbindung: 100Mbit
-  \item Server Software: Apache/2.2.16
-  \item Server Hostname: itsax.it-jobs-und-stellen.de
-  \item Server Port: 80
+  \item Server Software: Apache/2.2.16 (Module)
+  \item PHP Version
+  \item Mysql welche Version
+  \item welches Linux 
+  \item Serverstandort: Vogtland...?
 \end{itemize}
 
 \section{Testverfahren}
-Das Testen von Web-Performance hat sich in den letzten Jahren stetig weiterentwickelt. Eine Zeit lang galten sogenannte Backbonetests als das Non-Plus-Ultra. Nachdem aber immer deutlicher wurde, dass die tatsächlichen Ergebnisse sich stark von den Erwartungen unterscheiden, suchte man nach Alternativen. Der verlässlichste Test wird natürlich direkt beim Kunden beziehungsweise der Zielgruppe durchgeführt. Da es oft schwierig ist diese Tests durchzuführen, sollte zumindest mit ähnlichen Vorraussetzungen getestet werden.
+Das Testen von Web-Performance hat sich in den letzten Jahren stetig weiterentwickelt. Eine Zeit lang galten sogenannte Backbonetests\footnote{Anstatt eines Nutzertests ...?} als das Non-Plus-Ultra. Nachdem aber immer deutlicher wurde, dass die tatsächlichen Ergebnisse sich stark von den Erwartungen unterscheiden, suchte man nach Alternativen. Der verlässlichste Test wird natürlich direkt beim Kunden beziehungsweise der Zielgruppe durchgeführt. Da es oft schwierig ist diese Tests durchzuführen, sollte zumindest mit ähnlichen Vorraussetzungen getestet werden.
 \subsection{Servertest}
-Die rein serverseitigen Optimierungen wurden mit ``ab'' getestet. ``ab'', das für apache bench steht, wurde entwickelt, um Apache Server zu testen. Es analysiert, wie lange ein Server braucht, um Webseiten auszuliefern und wieviele Anfragen er pro Sekunde befriedigen kann, ohne das es zu Ausfällen kommt. ``ab'' führt 50 Anfragen hintereinander auf die Ressource aus und berechnet dann anhand der Ergebnisse die durchschnittliche Antwortzeit. Der Kommandozeilenbefehl, der zum Testen genutzt wurde, war denkbar einfach:
-\begin{lstlisting}[language=bash,label=ab mit Paramtern,caption=ab mit Parametern]
+Die rein serverseitigen Optimierungen wurden mit ``ab'' getestet. ``ab'', das für apache bench steht, wurde entwickelt, um Apache Server zu testen. Es analysiert, wie lange ein Server braucht, um Webseiten auszuliefern und wieviele Anfragen er pro Sekunde befriedigen kann, ohne das es zu Ausfällen kommt. ``ab'' führt die gewünschte Anzahl an Anfragen hintereinander mit der gewählten Anzahl an nebenläufigen Zugriffen (Concurrency) auf die Ressource aus und berechnet dann anhand der Ergebnisse die durchschnittliche Antwortzeit. Der Kommandozeilenbefehl, der zum Testen genutzt wurde, war denkbar einfach:
+\begin{lstlisting}[language=bash,label=ab mit Parametern,caption=ab mit Parametern]
 ab -n 50 -c 1 http://itsax.it-jobs-und-stellen.de/
 \end{lstlisting}
+Dies führt 50 Anfragen mit einer Concurrency von 1 auf itsax.it-jobs-und-stellen.de.
 
 \subsection{Browsertest}
-Browsertests sind eine sehr komplizierte Angelegenheit, da es zum einen sehr viele verschiedene Browser gibt und zum anderen diese Browser in den verschiedensten Umgebungen ausgeführt werden. Ein Netbook zum Beispiel wird eine Webseite immer langsamer darstellen als ein Desktop-PC der neuesten Generation. Man kann natürlich am eigenen Computer Tests durchführen, dafür gibt es aber auch Programme, wie Firebug und YSlow, die auch Verbesserungsvorschläge liefern können. Da aber möglichst objektiv getestet werden soll, ist es von Vorteil, eine standardisierte und automatisierte Umgebung zu nutzen. Für diesen Zweck bietet sich WebPagetest an. Es wurde ursprünglich für den internen Gebrauch bei AOL entwickelt, steht aber seit 2008 unter der BSD Lizenz und kann somit frei genutzt werden. Es ist eine umfassende Testsuite für Webseiten. Besonders die verschiedenen Analysen, die automatisch durchgeführt werden, sind positiv hervorzuheben. Das Programm ist in der Lage, die Webseite nach den Google Page Speed Kriterien zu bewerten und ausführliche Inhaltsanalysen, aufgeschlüsselt nach MIME Typen, zu liefern. Zusätzlich wird ein sehr hilfreiches Wasserfalldiagramm erzeugt und für jedes Element der Webseite ein Performance Review erstellt. Darin werden unter anderem Kriterien wie Kompression und Caching betrachtet. Als besonderes Feature gibt es noch einen Videovergleich, in dem man Webseiten gegeneinander antreten lassen kann. Man kann WebpageTest sowohl selbst installieren als auch externe Anbieter nutzen. In diesem Fall wird www.webpagetest.org mit folgenden Paramtern genutzt:
+%TODO Ausdruck
+Browsertests sind eine sehr komplizierte Angelegenheit, da es zum einen sehr viele verschiedene Browser gibt und zum anderen diese Browser in den verschiedensten Umgebungen ausgeführt werden. Ein Netbook zum Beispiel wird eine Webseite immer langsamer darstellen als ein Desktop-PC der neuesten Generation. Man kann natürlich am eigenen Computer Tests durchführen. Dafür gibt es aber auch Programme, wie Firebug und YSlow, die auch Verbesserungsvorschläge liefern können. Da aber möglichst objektiv getestet werden soll, ist es von Vorteil, eine standardisierte und automatisierte Umgebung zu nutzen. Für diesen Zweck bietet sich WebPagetest\footnote{Link: \url{http://..}} an. Es wurde ursprünglich für den internen Gebrauch bei AOL entwickelt, steht aber seit 2008 unter der BSD-Lizenz und kann somit frei genutzt werden. Es ist eine umfassende Testsuite für Webseiten. Besonders die verschiedenen Analysen, die automatisch durchgeführt werden, sind positiv hervorzuheben. Das Programm ist in der Lage, die Webseite nach den "`Google Page Speed"'-Kriterien zu bewerten und ausführliche Inhaltsanalysen, aufgeschlüsselt nach MIME\footnote{?}-Typen, zu liefern. Zusätzlich wird ein sehr hilfreiches Wasserfalldiagramm erzeugt und für jedes Element der Webseite ein Performance Review erstellt. Darin werden unter anderem Kriterien wie Kompression und Caching betrachtet. Als besonderes Feature gibt es noch einen Videovergleich, in dem man Webseiten gegeneinander antreten lassen kann. Man kann WebpageTest sowohl selbst installieren als auch externe Anbieter nutzen. In diesem Fall wird www.webpagetest.org mit folgenden Paramtern genutzt:
 \begin{itemize}
   \item 10 konsekutive Tests (maximum) 
   \item Standort des Clients: Frankfurt a. M.
   \item Browser: IE9
   \item Connection: DSL 1,5 Mbps / 50ms RTT
-  \item Only First View
+  \item Only First View %TODO was heisst das?
 \end{itemize}
 \subsection{Andere Analyse Verfahren}
-Profiling und Debugging auf Codeebene wurden nur sporadisch eingesetzt, da sie den Anwendungsfall Webseite nur eingeschränkt betreffen. Durch Caching kann der Server zum großen Teil vollständig entlastet werden und die Codeausführungszeit kann eliminiert werden. Bei Anwendungsfällen, die kein Caching erlauben, wie zum Beispiel eine Suche oder eine Applikation, ist es sehr hilfreich diese Tools zu verwenden. Sie ersparen viel Arbeit, da die Problemstellen schnell ausgemacht werden können. Von Hand diese Arbeiten durchzuführen, ist in kleinen Projekten sehr mühsam und in großen Projekten fast unmöglich. Jeder Entwickler sollte solche Programme in seinem Repertoire haben.
-
-\section{Ausgangszustand}
-Sreeram Ramachandran, ein Software Ingenieur der Firma Google, hat eine Analyse über 4.2 Milliarden Seiten veröffentlicht. Diese ist im Rahmen der Initiative ``Let's make the web faster'' entstanden und zeigt häufige Fehlerquellen und ungenutztes Potential auf. Die durchschnittliche Webseite hat laut Ramachandran 320 kB Größe, 44 verschiedene Ressourcen und es werden nur 66\% der komprimierbaren Inhalte tatsächlich komprimiert. 
-Itsax.de hat 106 Ressourcen und 444 kB an Daten. Schon anhand dieser zwei Zahlen lässt sich eine vergleichsweise schwache Leistung vorhersehen. Besonders die Anzahl an verschiedenen Ressourcen deutet auf Missstände hin, da Parallelisierung von Zugriffen nur bis zu einem bestimmten Grad möglich ist. Die Time to First Byte(TtFB) von 674ms bezeichnet die Zeit, die vergeht bis der Webbrowser die ersten Daten empfängt, dass bedeutet aber noch nicht, dass der Nutzer schon Inhalte präsentiert bekommt. Die Inhalte werden erst angezeigt, nachdem die Time to Start Render(TtSR) vergangen ist. Der Nutzer muss demnach ungefähr zwei Sekunden warten, bis die Webseite im Browser anfängt sich aufzubauen. Die Load Time(LT) bezeichnet dann die Zeit die vergeht, bis die Seite komplett dargestellt wird und der Benutzer sie ohne Einschränkungen bedienen kann. Es können aber auch nach der LT noch Inhalte nachgeladen werden, wie zum Beispiel gestreamte Videos oder andere asynchrone Inhalte. Diese nachgeladenen Inhalte wirken sich aber nicht mehr negativ auf die User Experience aus, solange sie im Rahmen bleiben und nicht wichtige Teile der Webseite, wie zum Beispiel das Hauptmenü, noch per Flash geladen werden müssen. Die Anzahl der DOM Elemente bezeichnet alle vom Browser zu verarbeitenden Objekte und ist ein Indikator für die Komplexität der Webseite. Je mehr Elemente also vorhanden sind, desto länger muss der Browser die Positionierung und Darstellung berechnen. Mit 855 DOM Elementen gehört ITsax.de schon zu den komplexeren Seite, was zu einem Großteil Drupal anzurechnen ist, welches durch seine gute Konfigurierbarkeit Einbußen in    Die Inhalte auf der Seite Itsax.de sind in Abbildung ? dargestellt, einmal im Bezug auf Größe und einmal aufgeschlüsselt nach der Anzahl der benötigten Requests, um die Inhalte vom Server anzufordern. Die folgenden Ergebnisse wurden mit dem Analysetool webpagetest.org ermittelt. Leicht zu erkennen ist, dass der HTML Anteil, sowohl bei der Größe als auch bei Anzahl der HTTP Anfragen, eine untergeordnete Rolle spielt. Nicht vergessen werden darf aber die Zeit, die der Server benötigt, um den HTTP Code zu generieren. Dies kann man sehr gut in einem Wasserfalldiagramm erkennen, indem der Start des Ladevorgangs hervorgehoben wurde. Bevor der Initiale GET Request abgeschlossen ist, weiß der Browser noch nicht, welche Ressourcen er laden muss und es können noch keine anderen Aktionen ausgeführt werden.
+Profiling und Debugging auf Codeebene wurden nur sporadisch eingesetzt, da sie den Anwendungsfall Webseite nur eingeschränkt betreffen. Durch Caching kann die Codeausführungszeit größtenteils eliminiert werden. Bei Anwendungsfällen, die kein Caching erlauben, wie zum Beispiel eine Suche oder eine Applikation, ist es aber sehr hilfreich diese Tools zu verwenden. Sie ersparen viel Arbeit, da die Problemstellen schnell ausgemacht werden können. Von Hand diese Arbeiten durchzuführen, ist in kleinen Projekten sehr mühsam und in großen Projekten fast unmöglich. Jeder Entwickler sollte solche Programme in seinem Repertoire haben.
+%TODO Brau
+\section{Ausgangszustand}  
+Sreeram Ramachandran, ein Software Ingenieur der Firma Google, hat eine Analyse über 4.2 Milliarden Seiten veröffentlicht. Diese ist im Rahmen der Initiative "`Let's make the web faster"' entstanden und zeigt häufige Fehlerquellen und ungenutztes Potential auf. Die durchschnittliche Webseite hat laut Ramachandran 320 kB Größe, 44 verschiedene Ressourcen und es werden nur 66\% der komprimierbaren Inhalte tatsächlich komprimiert.  %TODO Quelle \citep{joerg_klukas_referenzen_2011}
+ITsax.de hat 106 Ressourcen und 444 kB an Daten. Schon anhand dieser zwei Zahlen lässt sich eine vergleichsweise schwache Leistung vorhersehen. Besonders die Anzahl an verschiedenen Ressourcen deutet auf Missstände hin, da Parallelisierung von Zugriffen nur bis zu einem bestimmten Grad möglich ist. Die Time to First Byte(TtFB) von 674ms bezeichnet die Zeit, die vergeht bis der Webbrowser die ersten Daten empfängt, dass bedeutet aber noch nicht, dass der Nutzer schon Inhalte präsentiert bekommt. Die Inhalte werden erst angezeigt, nachdem die Time to Start Render(TtSR) vergangen ist. Der Nutzer muss demnach ungefähr zwei Sekunden warten, bis die Webseite im Browser anfängt sich aufzubauen. Die Load Time(LT) bezeichnet dann die Zeit die vergeht, bis die Seite komplett dargestellt wird und der Benutzer sie ohne Einschränkungen bedienen kann. Es können aber auch nach der LT noch Inhalte nachgeladen werden, wie zum Beispiel gestreamte Videos oder andere asynchrone Inhalte. Diese nachgeladenen Inhalte wirken sich aber nicht mehr negativ auf die User Experience aus, solange sie im Rahmen bleiben und nicht wichtige Teile der Webseite, wie zum Beispiel das Hauptmenü, noch per Flash geladen werden müssen. Die Anzahl der DOM Elemente bezeichnet alle vom Browser zu verarbeitenden Objekte und ist ein Indikator für die Komplexität der Webseite. Je mehr Elemente also vorhanden sind, desto länger muss der Browser die Positionierung und Darstellung berechnen. Mit 855 DOM Elementen gehört ITsax.de schon zu den komplexeren Seite, was zu einem Großteil Drupal anzurechnen ist, welches durch seine gute Konfigurierbarkeit Einbußen in    Die Inhalte auf der Seite Itsax.de sind in Abbildung \ref{fig:startwaterfall} dargestellt, einmal im Bezug auf Größe und einmal aufgeschlüsselt nach der Anzahl der benötigten Requests, um die Inhalte vom Server anzufordern. Die folgenden Ergebnisse wurden mit dem Analysetool webpagetest.org ermittelt. Leicht zu erkennen ist, dass der HTML Anteil, sowohl bei der Größe als auch bei Anzahl der HTTP Anfragen, eine untergeordnete Rolle spielt. Nicht vergessen werden darf aber die Zeit, die der Server benötigt, um den HTTP Code zu generieren. Dies kann man sehr gut in einem Wasserfalldiagramm erkennen, indem der Start des Ladevorgangs hervorgehoben wurde. Bevor der Initiale GET Request abgeschlossen ist, weiß der Browser noch nicht, welche Ressourcen er laden muss und es können noch keine anderen Aktionen ausgeführt werden.
 \begin{figure}[htbp]
   \centering
   \includegraphics[scale=0.5]{material/start_waterfall_edited.png}
   \caption{Wasserfalldiagramm: Ausgangszustand}
+  
   \label{fig:startwaterfall}
 \end{figure}
 \begin{figure}[htbp]
@@ -179,7 +184,7 @@ Time to Start Render: 1.577s
 \#Requests: 85 %!
 Bytes In: 427 kB
 %http://www.webpagetest.org/result/110809_XB_198VE/
-\subsection{Drupal Boost Module} Das Boost Modul ist ein Cache für statische Seiten, er funktioniert aber nur für Gastnutzer der Webseite. ITsax.de wird aber fast ausschließlich von Gastnutzern besucht, da nur Partner und Administratoren einen erweiterten Zugang benötigen. Durch diese guten Vorraussetzungen kann das Boost Modul komplette Seiten cachen. Dabei ist HTML, XML, Ajax, CSS und Javascript caching und gzipping möglich. Die genutzen Techniken sind sehr performant und bauen auf einem Dateisystemcache auf, das bedeutet jede Seite wird komplett auf der Festplatte abgelegt. Alle Arten von serverseitigen Prozessen werden so nach dem initialem Seitenaufruf, der das Caching auslöst, nicht mehr durchlaufen. Dies sieht man sehr gut an der Time to First Byte. Von den 172 ms werden ca. 50ms für den DNS Lookup benötigt und 70ms für die erste HTTP Verbindung. Der Server braucht demnach nur ca. 50 ms um die Seite auszuliefern. Dies hat natürlich einen sehr Positiven Einfluss auf die Gesamtperformance und macht sich besonders beim Endnutzer bemerkbar, da die Seite spürbar schneller anfängt sich im Browser aufzubauen. 
+\subsection{Drupal Boost Module} Das Boost Modul ist ein Cache für statische Seiten, der allerdings nur für nicht-angemeldete Gastnutzer funktioniert. Da ITsax.de auch nur fast ausschließlich von Gastnutzern besucht wird, bietet es sich an, dieses Modul zum Cachen kompletter Seiten an. Dabei ist HTML, XML, Ajax, CSS und Javascript Caching und gzipping\footnote{?} möglich. Die genutzen Techniken sind sehr performant und bauen auf einem Dateisystemcache auf. Das bedeutet, jede Seite wird komplett auf der Festplatte abgelegt. Alle Arten von serverseitigen Prozessen werden so nach dem initialem Seitenaufruf, der das Caching auslöst, nicht mehr durchlaufen. Dies sieht man sehr gut an der Time to First Byte. Von den 172 ms werden ca. 50ms für den DNS Lookup benötigt und 70ms für die erste HTTP Verbindung. Der Server braucht demnach nur ca. 50 ms um die Seite auszuliefern. Dies hat natürlich einen sehr positiven Einfluss auf die Gesamtperformance und macht sich besonders beim Endnutzer bemerkbar, da die Seite spürbar schneller anfängt sich im Browser aufzubauen. 
 Load Time: 3.233s
 Time to First Byte: 0.172s %!
 Time to Start Render: 1.473s
@@ -211,10 +216,10 @@ Time to Start Render: 1.894s
 Bytes In: 429 kB % 15kb gespart
 %http://www.webpagetest.org/result/110809_C4_1999C/
 \subsubsection{Verlustbehaftete Kompression} Da im Web kein besonders hoher Detailgrad gewährleistet werden muss, ist auch eine Kompression erwünscht die auf Kosten der Bildqualität die Bildgröße verringert. 
-
+\begin{lstlisting}[language=bash,label=Optimieren mit find,caption=Optimieren mit find]
 find . -name "*.png" -exec optipng -o7 {} \;
 find . -name "*.jpg" -exec jpegoptim {} \;
-
+\end{lstlisting}
 Load Time: 3.255s
 Time to First Byte: 0.669s %!
 Time to Start Render: 1.908s
@@ -228,6 +233,7 @@ Das Framework Drupal 5 benutzt Themes zur Gestaltung der Oberfläche. Um diese f
 händisch gemergte styles
 style auf standard setzen
 vorher die images und das geänderte stylesheet kopieren
+%TODO Fetter GAU
 Load Time: 3.626s
 Time to First Byte: 0.629s %!
 Time to Start Render: 1.890s
@@ -236,7 +242,7 @@ Time to Start Render: 1.890s
 Bytes In: 440 kB % 4kb gespart
 %http://www.webpagetest.org/result/110809_SZ_19APH/
 
-\subsection{Theme Bilder Spriten}
+\subsection{Theme Bilder spriten}
 Spriting wurde ursprünglich in der Videospielentwicklung verwendet, um Bilder in den Grafikspeicher zu laden. In der Webentwicklung ist es eine effektive Technik, um Bilder ohne mehrfachen Overhead zu laden. Beim Spriting wird aus vielen einzelnen Bildern ein einziges Bild erstellt, dass anstelle der vielen Bilder geladen wird. Um die Bilder dann noch einzeln Anzeigen zu können, werden CSS Befehle genutzt, die es ermöglichen, die Größe und die Position eines Bildausschnittes anzuzeigen. 
 Load Time: 3.707
 Time to First Byte: 0.669s %!
@@ -281,7 +287,7 @@ Um die langsamen Module weiterhin nutzen zu können, muss eine Lösung gefunden 
   \includegraphics[scale=0.5]{material/partner_slideshow.png}
   \caption{Größe der Inhalte}
   \label{fig:startbyte}
-\end{figure} Die Partnerslideshow ist eher ein kosmetisches Element der Startseite und für den Nutzer nicht notwendig. Daher kann es so Programmiert werden, dass beim Laden nur ein leeres DIV übergeben wird. Dann wird ein Timeout gestartet und bei der Aktivierung des Timeoutevents wird das DIV mit den Slideshowelementen gefüllt, und die Slideshow gestartet. Der Code wurde dahingehend angepasst, dass anstatt den HTML Code in der Seite einzufügen er in eine Javascript Variable geschrieben wird. Dadurch ist es möglich über eine DOM Manipulation den HTML Code später einzufügen. Das stellt sich dann wie im folgenden Codeaussschnitt dar.
+\end{figure} Die Partnerslideshow ist eher ein kosmetisches Element der Startseite und für den Nutzer nicht notwendig. Daher kann es so programmiert werden, dass beim Laden nur ein leeres DIV übergeben wird. Dann wird ein Timeout gestartet und bei der Aktivierung des Timeoutevents wird das DIV mit den Slideshowelementen gefüllt, und die Slideshow gestartet. Der Code wurde dahingehend angepasst, dass anstatt den HTML Code in der Seite einzufügen er in eine Javascript Variable geschrieben wird. Dadurch ist es möglich über eine DOM Manipulation den HTML Code später einzufügen. Das stellt sich dann wie im folgenden Codeaussschnitt dar.
 \begin{lstlisting}[language=php,label=Javascript - Slideshow,caption=Javascript - Slideshow]
 drupal_add_js('
   if (Drupal.jsEnabled) {
@@ -343,7 +349,7 @@ Wieder wird als initialer Rückgabewert nur ein leeres DIV-Element ausgegeben. D
 \subsubsection{Partneranzeigen}
 \begin{figure}[htbp]
   \centering
-  \includegraphics[scale=0.5]{material/partneranzeigen.png}
+  \includegraphics[width=1.1\textwidth]{material/partneranzeigen.png}
   \caption{Größe der Inhalte}
   \label{fig:startbyte}
 \end{figure}
@@ -388,7 +394,7 @@ Nach der Zusammenführung aller Optimierungen wurde die Webseite erneut getestet
 %http://www.webpagetest.org/result/110825_5J_1DQHK/
 \section{Vergleich}
 \begin{center}
-    \begin{tabular}{ | p{4cm} | p{1cm} | p{1cm} | p{6cm} |}
+    \begin{longtable}{ | p{4cm} | p{1cm} | p{1cm} | p{6cm} |}
     \hline
     Methode & Load Time & TtSR & Kommentar \\ \hline
     \hline
@@ -407,5 +413,15 @@ Nach der Zusammenführung aller Optimierungen wurde die Webseite erneut getestet
     Gesamtergebnis 	& 1.354s  & 0.952s & Wenn alle Verbesserungen auf einmal aktiviert werden wird die Webseite dramatisch beschleunigt.  \\ \hline
     
     \hline
-    \end{tabular}
+    \end{longtable}
 \end{center}
+
+
+\section{Zusammenfassung und Ausblick}
+
+Toll!
+
+
+ToDo
+ * Nur Startseite betrachtet. Z.B. komplexe Suchanfrage vergleichen -> Profiling
+ * 

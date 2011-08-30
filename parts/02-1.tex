@@ -145,7 +145,7 @@ Bytes In: 444 KB
 %http://www.webpagetest.org/result/110809_BH_198S4/
 
 
-Im folgenden Abschnitt werden die eingesetzten Methoden dargestellt und ihre Auswirkungen auf die Webperformance der Seite itsax.de dargestellt. 
+Im folgenden Abschnitt werden die eingesetzten Methoden dargestellt und ihre Auswirkungen auf die Webperformance der Seite ITsax.de dargestellt. 
 JS Aggregation und Minifizierung mit dem Javascript Aggregation Modul:
 Aggregation und Minifizierung sind Verfahren, die in der Webperformance Optimierung häufig eingesetzt werden. Für das Drupal 5 System gibt es fertige Module die diese Aufgabe übernehmen. Das Modul interveniert innerhalb des Drupal Kerns und ersetzt die Javascripts, die vorher direkt so ausgegeben wurden wie sie die Module lieferten, durch eine einzelne, das heisst aggregierte Version, die optional minifiziert werden kann. Diese Minifizierung wird natürlich genutzt und spart einige KB. Minifizierung wird ermöglicht durch die Nutzung von JSmin https://github.com/rgrove/jsmin-php/. JSmin ist ein Filter der unter anderem Kommentare entfernt und mehrere Leerzeichen zu einem zusammenfasst. Durch die Nutzung dieser Methode konnten 11 HTTP Abfragen und 11 KB an Datenvolumen eingespart werden.
 Load Time: 3.658s
@@ -176,7 +176,7 @@ Bytes In: 444 KB
 %http://www.webpagetest.org/result/110809_AP_198XJ/
 
 Bildoptimierungen mit jpegoptim und OptiPNG verlustfrei!: 
-Bilder und Grafiken bieten oft großen Optimierungsspielraum, zum einen durch die richtige Auswahl der Dateiformate und zum anderen durch Komprimierung der Bilder. Da es auf www.itsax.de nicht nur statische Inhalte gibt, sondern auch durch Communitymitglieder und Communitymanager eingestellte Inhalte verwaltet werden müssen, sollte eine nachträgliche Qualitätsoptimierung der hochgeladenen Bilder durchgeführt werden. Um dies umzusetzen sind die Programme OptiPNG und jpegOptim zu empfehlen. Auf jeden Fall sollte eine verlustfreie Komprimierung durchgeführt werden, da die Bilder in diesem Fall nur an Dateigröße verlieren und die Bildqualität unberührt bleibt. Da es sich bei beiden Programmen um Kommandozeilenprogramme handelt kann man ihre Anwendung leicht automatisieren. Mit dem Linuxbefehl find, der praktischerweise eine Möglichkeit Befehle auszuführen besitzt, kann man direkt die entsprechenden Dateien an die Optimierer übergeben. Diese Aktionen können dann über einen Cronjob periodisch jede Nacht ausgeführt werden. Die Befehle sehen dann wie folgt aus: 
+Bilder und Grafiken bieten oft großen Optimierungsspielraum, zum einen durch die richtige Auswahl der Dateiformate und zum anderen durch Komprimierung der Bilder. Da es auf www.ITsax.de nicht nur statische Inhalte gibt, sondern auch durch Communitymitglieder und Communitymanager eingestellte Inhalte verwaltet werden müssen, sollte eine nachträgliche Qualitätsoptimierung der hochgeladenen Bilder durchgeführt werden. Um dies umzusetzen sind die Programme OptiPNG und jpegOptim zu empfehlen. Auf jeden Fall sollte eine verlustfreie Komprimierung durchgeführt werden, da die Bilder in diesem Fall nur an Dateigröße verlieren und die Bildqualität unberührt bleibt. Da es sich bei beiden Programmen um Kommandozeilenprogramme handelt kann man ihre Anwendung leicht automatisieren. Mit dem Linuxbefehl find, der praktischerweise eine Möglichkeit Befehle auszuführen besitzt, kann man direkt die entsprechenden Dateien an die Optimierer übergeben. Diese Aktionen können dann über einen Cronjob periodisch jede Nacht ausgeführt werden. Die Befehle sehen dann wie folgt aus: 
 find . -name "*.png" -exec optipng -o7 {} \;
 find . -name "*.jpg" -exec jpegoptim {} \;
 
@@ -204,7 +204,7 @@ Bytes In: 371 KB % 73kb gespart
 %http://www.webpagetest.org/result/110809_15_199GY/
 
 Drupal 5 Fehler bei umgefärbten Themes:
-Das Framework Drupal 5 benutzt Themes zu Gestaltung der Oberfläche, um diese farblich anpassen zu können wurde das Color Modul installiert, welches Themeveränderungen ermöglicht. Dadurch das das Theme nur kopiert und die Farben geändert werden entstehen bei diesem Vorgang unnötige Duplikate die beim Laden der Seite mitgeschleppt werden. Um diese zu Entfernen wird einfach das Standardtheme durch das Modifizierte ersetzt. Dafür müssen  nur noch einige Pfade in der style.css angepasst werden und man spart in dem fall von itsax.de 4 kb, was immerhin ca 1\% der übertragenen Datenmenge ausmacht.
+Das Framework Drupal 5 benutzt Themes zu Gestaltung der Oberfläche, um diese farblich anpassen zu können wurde das Color Modul installiert, welches Themeveränderungen ermöglicht. Dadurch das das Theme nur kopiert und die Farben geändert werden entstehen bei diesem Vorgang unnötige Duplikate die beim Laden der Seite mitgeschleppt werden. Um diese zu Entfernen wird einfach das Standardtheme durch das Modifizierte ersetzt. Dafür müssen  nur noch einige Pfade in der style.css angepasst werden und man spart in dem fall von ITsax.de 4 kb, was immerhin ca 1\% der übertragenen Datenmenge ausmacht.
 händisch gemergte styles
 style auf standard setzen
 vorher die images und das geänderte stylesheet kopieren

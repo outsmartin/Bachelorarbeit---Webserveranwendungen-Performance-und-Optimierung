@@ -2,7 +2,7 @@
 \label{sec:theory}
 
 \subsection{Usability}
-Web Performance hat einen großen Einfluss auf die Bedienbarkeit von Webseiten. Ohne die starke Verbesserung ihrer Performance hätte Google mit GMail und ihren anderen Web Applikationen keinen Erfolg erzielen können. Nur wenn eine Anwendung auch in einer akzeptablen Geschwindigkeit auf Benutzerinteraktionen reagieren kann, hat sie eine Chance auf dem Markt zu bestehen. Es gibt einige Studien, die sich mit Web Usability auseinandersetzen. Zu den Ergebnissen gehörte unter anderem, dass langsamere Webseiten zu Vertrauensverlust sowie Nutzerfrustration führen. Als weitere Konsequenz ist der empfundene Qualitätsverlust zu nennen. Die genannten Punkte führen letztendlich zu niedrigeren Konversionsraten, das heißt, dass ...+ höheren Bailoutraten
+Web Performance hat einen großen Einfluss auf die Bedienbarkeit von Webseiten. Ohne die starke Verbesserung ihrer Performance hätte Google mit GMail und ihren anderen Web Applikationen keinen Erfolg erzielen können. Nur wenn eine Anwendung auch in einer akzeptablen Geschwindigkeit auf Benutzerinteraktionen reagieren kann, hat sie eine Chance auf dem Markt zu bestehen. Es gibt einige Studien, die sich mit Web Usability auseinandersetzen. Zu den Ergebnissen gehörte unter anderem, dass langsamere Webseiten zu Vertrauensverlust sowie Nutzerfrustration führen. Als weitere Konsequenz ist der empfundene Qualitätsverlust zu nennen. Die genannten Punkte führen letztendlich zu niedrigeren Konversionsraten, das heißt, dass ...+ höheren Bailoutraten (Absprungrate)
 
 %TODO niedrigere Konversionsraten und Bailoutraten erklären und Satz beenden
 
@@ -19,35 +19,39 @@ Eine umfassende Verbesserung der Auslieferungszeiten von Webseiten hat direkten 
 
 %TODO ``geheist'' erklären
 
-\section{Performance Bottlenecks}
+%\section{Performance Bottlenecks}
+\section{Einordnung von Performanzproblemen}
 Performance Bottlenecks oder auch Performance Flaschenhälse genannt, beschreiben Schwachpunkte in einem Datenverarbeitungssystem. Auf Web Performance angewendet, kann man das in clientseitige Probleme sowie serverseitige Probleme unterteilen.
+%TODO Begriffe ueberdenken
+
 \subsection{Clientseitige Bottlenecks}
-\subsubsection{Netzwerkverbindung}Die Netzwerkverbindung kann auf zwei Ebenen für Probleme sorgen. Zum einen kann eine hohe Latenz für langsame auch auf Serverseite auftreten, aber da kann mit mehr Servern und besseren Anbindungen Abhilfe geschafft werden. Viel problematischer wird das auf der Clientseite, da selten bekannt ist, mit welcher Anbindung Nutzer eine Webseite besuchen werden.%TODO bild netzwerk
-Da in Deutschland der Breitbandausbau noch lange kein Stadium erreicht hat, der es Webseitenbetreibern erlauben würde auf die Größe der Webseite die sie an ihre Betrachter ausliefern keinen Wert zu legen. Der Breitbandausbau peilt für 2011 eine 100 prozentige Versorgung mit 1 Mbit/s an und so sind noch viele Nutzer sind mit langsamen Internetzugängen im Internet unterwegs. 
+\subsubsection{Netzwerkverbindung}
+Die Netzwerkverbindung kann auf zwei Ebenen für Probleme sorgen. Zum einen kann eine hohe Latenz für langsame auch auf Serverseite auftreten, aber da kann mit mehr Servern und besseren Anbindungen Abhilfe geschafft werden. Viel problematischer wird das auf der Clientseite, da selten bekannt ist, mit welcher Anbindung Nutzer eine Webseite besuchen werden.%TODO bild netzwerk
+% Ausdruck! TODO
+
+Da in Deutschland der Breitbandausbau noch lange kein Stadium erreicht hat, der es Webseitenbetreibern erlauben würde auf die Größe der Webseite, die sie an ihre Betrachter ausliefern keinen Wert zu legen. Der Breitbandausbau peilt für 2011 eine 100 prozentige Versorgung mit 1 Mbit/s an und so sind noch viele Nutzer sind mit langsamen Internetzugängen im Internet unterwegs. %TODO Fussnote mit Link
 
 \subsubsection{Browser}
-Als Schnittstelle zwischen Mensch und Webseite ist der Browser ein besonders kritischer Punkt und muss bei Web Performanceanalysen besonders beachtet werden. Zum einen müssen die verschiedenen Browserfamilien, mit ihren Eigenheiten und Problemen und zum anderen die Tatsache das ein Browser nur so schnell arbeiten kann, wie der Computer auf dem er ausgeführt wird zulässt, beachtet werden. Problemzonen sind:
+Als Schnittstelle zwischen Mensch und Webseite ist der Browser ein besonders kritischer Punkt und muss bei Web Performanceanalysen besonders beachtet werden. Zum einen müssen die verschiedenen Browserfamilien, mit ihren Eigenheiten und Problemen und zum anderen die Tatsache das ein Browser nur so schnell arbeiten kann, wie der Computer auf dem er ausgeführt wird zulässt, beachtet werden. 
+%TODO 2 Saetze draus machen
+Problemzonen sind:
 \begin{itemize}
-  \item Anzahl von zu berechnenden DOM-Elementen
+  \item Anzahl von zu berechnenden DOM-Elementen %TODO was ist DOM
   \item Javascript Ausführungszeiten
-  \item Anzahl benötigter HTTP Zugriffe
-  \item 
-
+  \item Anzahl benötigter HTTP Zugriffe %z.B. Stylesheets Bilder  Warum ist das ein Problem
 \end{itemize}
 
 \subsubsection{DOM Elemente}
 \subsection{Serverseitig}
-So gut wie jede Website nutzt mittlerweile eine Datenbank, diese können verschiedenster Natur sein zum Beispiel:
-\begin{itemize}
-\item SQLite
-\item MySQL
-\item MSSQL
-\item PostGreSQL
-\item 
-\end{itemize}
-Oft sind diese Datenbanken ein Schwachpunkt für die Web-Performance, da meistens Daten von der Festplatte gelesen werden müssen und komplexe Abfragen viel Zeit in Anspruch nehmen können.
-\subsubsection{Datenbankabfragen}
+% moderne dynamische Webanwendungen sind komplexe Applikationen
 
+
+\subsubsection{Datenbankabfragen}
+So gut wie jede Website nutzt mittlerweile Datenbanken zur Verwaltung ihrer Datenbeständen.
+
+Oft sind diese Datenbanken ein Schwachpunkt für die Web-Performance, da meistens Daten von der Festplatte gelesen werden müssen und komplexe Abfragen viel Zeit in Anspruch nehmen können.
+
+% (Tablelocking Nutzer gleichzeitig)
 \subsubsection{Skriptausführung}
 \subsubsection{Skriptkompilierung}
 
@@ -56,30 +60,42 @@ Im Rahmen dieser Bachelorarbeit werden verschiedenste Technologien verwendet und
 \begin{description}
   \item[Server] Ein Server ist ein Computer, der Informationen und Dienste für andere Computer zur Verfügung stellt
   \item[Betriebssystem] Die Software die auf dem Server läuft. In der pludoni GmbH wird das Linuxderivat Debian eingesetzt.
-  \item[Datenbank] Als Datenbank wird eine strukturierte Sammlung von Daten bezeichnet. MySQL ist hier die erste Wahl.
+  \item[Datenbank] Als Datenbank wird eine strukturierte Sammlung von Daten bezeichnet. Einer der häufigsten Vertreter, gerade im Zusammenhang mit PHP-Webanwendungen, ist MySQL
   \item[Web Server] Der Web Server ist für die zuverlässige Auslieferung von Webseiten zuständig. Er beantwortet die Anfragen die die Nutzer mit dem Browser stellen. Apache2 wird dafür in der pludoni GmbH eingesetzt.
-  \item[PHP] PHP ist eine Programmiersprache, die es Web Entwicklern ermöglicht dynamische Webseiten zu programmieren.
-  \item[Drupal] Drupal ist ein Framework, welches in PHP geschrieben ist und viele direkt nutzbare Funktionen mitbringt. Dazu gehören unter anderem Administrationsoberflächen, Newsaggregatoren, Veröffentlichungsabläufe für Artikel und Blogbeiträge sowie Suchmaschinenoptimierungen. Außerdem ermöglicht Drupal die Installation weiterer, durch Nutzer entwickelte, Module. Dadurch wird eine fast unbegrenzte Funktionsvielfalt ermöglicht. Im vorliegenden Fall wird Drupal in der Version 5 eingesetzt.
+  \item[PHP] ist eine dynamische typisierte Programmiersprache, zur Erstellung von Webanwendungen. %TODO Features von PHP, 
+  \item[Drupal] Drupal ist ein CMS und Framework, welches in PHP geschrieben ist und viele direkt nutzbare Funktionen mitbringt. Dazu gehören unter anderem Administrationsoberflächen, Newsaggregatoren, Veröffentlichungsabläufe für Artikel und Blogbeiträge sowie Suchmaschinenoptimierungen. Außerdem ermöglicht Drupal die Installation weiterer, durch Nutzer entwickelte, Module. Dadurch wird eine fast unbegrenzte Funktionsvielfalt ermöglicht. Im vorliegenden Fall wird Drupal in der Version 5 eingesetzt.
   \item[Client] Im Browser der Nutzer kommt am Ende HTML an, dies wird durch Drupal generiert und vom Webserver ausgeliefert. Dabei werden Bilder verarbeitet Javascript Programme ausgeführt und andere Elemente wie Flashapplikationen und Videos berechnet. 
 \end{description}
+
+%TODO Bildchen vom Ablauf!
 
 \subsection{Server}
 \subsection{PHP}
 \subsection{Drupal (5)}
 Drupal ist ein Content-Management-System, dass heißt es ermöglicht dem Nutzer eine dynamische Webseite zu erstellen ohne spezielle Programmierkenntnisse zu besitzen. 
+
+% Ist sowohl CMS als auch Framework
 \subsection{Benchmark - Werkzeuge}
 \subsection{Debugger / Profiler}
 \section{Methoden der Web-Performance Optimierung}
 Die Methoden zur Leistungssteigerung können wie im Technologiestack untergliedert werden und jedes Element muss für sich betrachtet werden.
 
 \begin{description}
-  \item[Server] Der einzige Parameter der am Server verbessert werden kann ist seine Leistung, dass heißt Datendurchsatz und Rechengeschwindigkeit. Dies geschieht durch CPU Upgrades oder Arbeitsspeichererweiterung. Weitergehend kann man die Festplattenzugriffsgeschwindigkeiten durch RAID Verbünde und neue Technologien wie SSD Speicher verbessern. 
+  \item[Serverhardware] Der einzige Parameter der am Server verbessert werden kann ist seine Leistung, dass heißt Datendurchsatz und Rechengeschwindigkeit. Dies geschieht durch CPU Upgrades oder Arbeitsspeichererweiterung. Weitergehend kann man die Festplattenzugriffsgeschwindigkeiten durch RAID Verbünde und neue Technologien wie SSD Speicher verbessern. 
+  % Replikation also mehrere Server Load Balancer
   \item[Betriebssystem] Ansatzpunkte für Verbesserungen auf Betriebssystemebene sind Memory-Mapping, dass heißt Speicherbereiche die normalerweise auf der Festplatte liegen werden in den Arbeitsspeicher umgelagert um die Latenzen zu verringern. Dies wird genutzt um Caches zu beschleunigen, die normalerweise von der Festplatte lesen.
-  \item[Datenbank] Auf Datenbankebene kann im Fall von MySQL nur beschränkt optimiert werden. Zum einen sind Indizes anzulegen bei häufig genutzten Tabellen und zum anderen kann man MyISAM statt InnoDB nutzen um Performanter zu sein.
+  \item[Datenbank] Auf Datenbankebene kann im Fall von MySQL nur beschränkt optimiert werden. Zum einen sind Indizes anzulegen bei häufig genutzten Tabellen und zum anderen kann man MyISAM statt InnoDB nutzen um performanter zu sein.
+  % Replikation also mehrere DB Server
   \item[Web Server] Optimierungen am Webserver sind sehr schwierig da die Webserver Performance hauptsächlich von der Serverleistung abhängt. Die Anzahl der gleichzeitigen Zugriffe wird maßgeblich durch den verfügbaren Arbeitsspeicher und die verfügbare Bandbreite eingeschränkt.
   \item[PHP] 
+    % Neukomilierung verhindern
+    % Clevere Programmierung, Wahl der Frameworks
   \item[Drupal] 
+    % Caching 
+    % Anzahl der Module, 
+    % CSS Aggregation
   \item[HTML] 
+    % Caching 
 \end{description}
 
 
