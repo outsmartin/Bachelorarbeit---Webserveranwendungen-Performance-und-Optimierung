@@ -10,16 +10,16 @@ Der Optimierungsversuch kann leider nicht auf dem Livesystem durchgeführt werde
   \item Festplatten: 2 x 750 GB SATA-II HDD (Software-RAID 1)
   \item Netzwerkverbindung: 100Mbit
   \item Server Software: Apache/2.2.16 (Module)
-  \item PHP Version
-  \item Mysql welche Version
-  \item welches Linux 
-  \item Serverstandort: Vogtland...?
+  \item PHP Version: PHP 5.2.6-1+lenny13 with Suhosin-Patch 0.9.6.2
+  \item Mysql Version: 14.12 Distrib 5.0.51a 
+  \item Betriebssystem: Debian 4.1.2-25 mit Kernel 2.6.26-26lenny2
+  \item Serverstandort: Rechenzentrumspark Falkenstein
 \end{itemize}
 
 \section{Testverfahren}
-Das Testen von Web-Performance hat sich in den letzten Jahren stetig weiterentwickelt. Eine Zeit lang galten sogenannte Backbonetests\footnote{Anstatt eines Nutzertests ...?} als das Non-Plus-Ultra. Nachdem aber immer deutlicher wurde, dass die tatsächlichen Ergebnisse sich stark von den Erwartungen unterscheiden, suchte man nach Alternativen. Der verlässlichste Test wird natürlich direkt beim Kunden beziehungsweise der Zielgruppe durchgeführt. Da es oft schwierig ist diese Tests durchzuführen, sollte zumindest mit ähnlichen Vorraussetzungen getestet werden.
+Das Testen von Web-Performance hat sich in den letzten Jahren stetig weiterentwickelt. Eine Zeit lang galten sogenannte Backbonetests\footnote{Tests die direkt am Backbone, also im Rechenzentrum durchgef\"urht werden. F\"urht zu besseren Ergebnissen, da der Client und der Testserver direkt verbunden sind. Dieser Test spiegelt aber nicht die Wirklichkeit wieder.} als das Non-Plus-Ultra. Nachdem aber immer deutlicher wurde, dass die tatsächlichen Ergebnisse sich stark von den Erwartungen unterscheiden, suchte man nach Alternativen. Der verlässlichste Test wird natürlich direkt beim Kunden beziehungsweise der Zielgruppe durchgeführt. Da es oft schwierig ist diese Tests durchzuführen, sollte zumindest mit ähnlichen Vorraussetzungen getestet werden.
 \subsection{Servertest}
-Die rein serverseitigen Optimierungen wurden mit ``ab'' getestet. ``ab'', das für apache bench steht, wurde entwickelt, um Apache Server zu testen. Es analysiert, wie lange ein Server braucht, um Webseiten auszuliefern und wieviele Anfragen er pro Sekunde befriedigen kann, ohne das es zu Ausfällen kommt. ``ab'' führt die gewünschte Anzahl an Anfragen hintereinander mit der gewählten Anzahl an nebenläufigen Zugriffen (Concurrency) auf die Ressource aus und berechnet dann anhand der Ergebnisse die durchschnittliche Antwortzeit. Der Kommandozeilenbefehl, der zum Testen genutzt wurde, war denkbar einfach:
+Die rein serverseitigen Optimierungen wurden mit "`ab"' getestet. "`ab"', das für "`apache bench"' steht, wurde entwickelt, um Apache Server zu testen. Es analysiert, wie lange ein Server braucht, um Webseiten auszuliefern und wieviele Anfragen er pro Sekunde befriedigen kann, ohne das es zu Ausfällen kommt. "`ab"' führt die gewünschte Anzahl an Anfragen hintereinander mit der gewählten Anzahl an nebenläufigen Zugriffen (Concurrency) auf die Ressource aus und berechnet dann anhand der Ergebnisse die durchschnittliche Antwortzeit. Der Kommandozeilenbefehl, der zum Testen genutzt wurde, war denkbar einfach:
 \begin{lstlisting}[language=bash,label=ab mit Parametern,caption=ab mit Parametern]
 ab -n 50 -c 1 http://itsax.it-jobs-und-stellen.de/
 \end{lstlisting}
@@ -27,13 +27,13 @@ Dies führt 50 Anfragen mit einer Concurrency von 1 auf itsax.it-jobs-und-stelle
 
 \subsection{Browsertest}
 %TODO Ausdruck
-Browsertests sind eine sehr komplizierte Angelegenheit, da es zum einen sehr viele verschiedene Browser gibt und zum anderen diese Browser in den verschiedensten Umgebungen ausgeführt werden. Ein Netbook zum Beispiel wird eine Webseite immer langsamer darstellen als ein Desktop-PC der neuesten Generation. Man kann natürlich am eigenen Computer Tests durchführen. Dafür gibt es aber auch Programme, wie Firebug und YSlow, die auch Verbesserungsvorschläge liefern können. Da aber möglichst objektiv getestet werden soll, ist es von Vorteil, eine standardisierte und automatisierte Umgebung zu nutzen. Für diesen Zweck bietet sich WebPagetest\footnote{Link: \url{http://..}} an. Es wurde ursprünglich für den internen Gebrauch bei AOL entwickelt, steht aber seit 2008 unter der BSD-Lizenz und kann somit frei genutzt werden. Es ist eine umfassende Testsuite für Webseiten. Besonders die verschiedenen Analysen, die automatisch durchgeführt werden, sind positiv hervorzuheben. Das Programm ist in der Lage, die Webseite nach den "`Google Page Speed"'-Kriterien zu bewerten und ausführliche Inhaltsanalysen, aufgeschlüsselt nach MIME\footnote{?}-Typen, zu liefern. Zusätzlich wird ein sehr hilfreiches Wasserfalldiagramm erzeugt und für jedes Element der Webseite ein Performance Review erstellt. Darin werden unter anderem Kriterien wie Kompression und Caching betrachtet. Als besonderes Feature gibt es noch einen Videovergleich, in dem man Webseiten gegeneinander antreten lassen kann. Man kann WebpageTest sowohl selbst installieren als auch externe Anbieter nutzen. In diesem Fall wird www.webpagetest.org mit folgenden Paramtern genutzt:
+Browsertests k\"onnen durch die komplexen Voraussetzungen keine exakten Ergebnisse f\"ur alle m\"oglichen Konfigurationen liefern. Ein Netbook zum Beispiel wird eine Webseite immer langsamer darstellen als ein Desktop-PC der neuesten Generation. Man kann natürlich am eigenen Computer Tests durchführen. Dafür gibt es aber auch Programme, wie Firebug\footnote{Entwicklertool f\"ur Firefox \url{https://addons.mozilla.org/de/firefox/addon/firebug/}} und YSlow\footnote{Erweiterung f\"ur Firebug die Webseiten bewerten kann \url{https://addons.mozilla.org/de/firefox/addon/yslow/}}, die auch Verbesserungsvorschläge liefern können. Da aber möglichst objektiv getestet werden soll, ist es von Vorteil, eine standardisierte und automatisierte Umgebung zu nutzen. Für diesen Zweck bietet sich WebpageTest\footnote{Link: \url{https://sites.google.com/a/webpagetest.org/docs/}} an. Es wurde ursprünglich für den internen Gebrauch bei AOL entwickelt, steht aber seit 2008 unter der BSD-Lizenz und kann somit frei genutzt werden. Es ist eine umfassende Testsuite für Webseiten. Besonders die verschiedenen Analysen, die automatisch durchgeführt werden, sind positiv hervorzuheben. Das Programm ist in der Lage, die Webseite nach den "`Google Page Speed"'-Kriterien zu bewerten und ausführliche Inhaltsanalysen, aufgeschlüsselt nach MIME\footnote{Multipurpose Internet Mail Extensions}-Typen, zu liefern. Zusätzlich wird ein sehr hilfreiches Wasserfalldiagramm erzeugt und für jedes Element der Webseite ein Performance-Review erstellt. Darin werden unter anderem Kriterien wie Kompression und Caching betrachtet. Als besonderes Feature gibt es noch einen Videovergleich, in dem man Webseiten gegeneinander antreten lassen kann. Man kann WebpageTest sowohl selbst installieren als auch externe Anbieter nutzen. In diesem Fall wird www.webpagetest.org mit folgenden Parametern genutzt:
 \begin{itemize}
-  \item 10 konsekutive Tests (maximum) 
-  \item Standort des Clients: Frankfurt a. M.
+  \item 10 konsekutive Tests
+  \item Standort des Clients: Frankfurt a. M.a
   \item Browser: IE9
   \item Connection: DSL 1,5 Mbps / 50ms RTT
-  \item Only First View %TODO was heisst das?
+  \item Only First View\footnote{Nur ungecachte Zugriffe werden getestet}
 \end{itemize}
 \subsection{Andere Analyse Verfahren}
 Profiling und Debugging auf Codeebene wurden nur sporadisch eingesetzt, da sie den Anwendungsfall Webseite nur eingeschränkt betreffen. Durch Caching kann die Codeausführungszeit größtenteils eliminiert werden. Bei Anwendungsfällen, die kein Caching erlauben, wie zum Beispiel eine Suche oder eine Applikation, ist es aber sehr hilfreich diese Tools zu verwenden. Sie ersparen viel Arbeit, da die Problemstellen schnell ausgemacht werden können. Von Hand diese Arbeiten durchzuführen, ist in kleinen Projekten sehr mühsam und in großen Projekten fast unmöglich. Jeder Entwickler sollte solche Programme in seinem Repertoire haben.
@@ -108,18 +108,15 @@ Time per request:       363.640 [ms] (mean, across all concurrent requests)
 Transfer rate:          175.46 [kBytes/sec] received
 \end{lstlisting}
 
-
-
-
 \section{Implementierung und Test der einzelnen Methoden}
-Im folgenden Abschnitt werden die eingesetzten Methoden dargestellt und ihre Auswirkungen auf die Webperformance der Seite itsax.de aufgezeigt. 
+Im folgenden Abschnitt werden die eingesetzten Methoden dargestellt und ihre Auswirkungen auf die Webperformance der Seite ITsax.de aufgezeigt. 
 Dabei werden alle Methoden, die vom Autor, nach der Analyse des Ausgangszustands, für möglicherweise sinnvoll befunden wurden, getestet. Die Methode wird jeweils mit dem Startwert verglichen und der Aufwand eingeschätzt.
-\subsection{APC} Als allererste Maßnahme wurde ein PHP Opcode Cache ausprobiert. Opcode Caches speichern die Ergebnisse vorangegangener Operationen und können so beim nächsten Aufruf direkt die Ergebnisse ausliefern, wenn die Anfrage gleichgeblieben ist. Solche Systeme sind immer zu empfehlen, da sie normalerweise keinerlei Probleme bereiten und alle PHP Anfragen beschleunigen. Aktuell gibt es mehrere verschiedene sogenannte PHP Beschleuniger. Unter ihnen nimmt aber APC eine führende Position ein. Hauptsächlich weil es der zuverlässigste unter den nicht-kommerziellen Caches ist. Ab PHP Version 5.4 wird er in PHP schon enthalten sein. Die Installation von APC ist auf einigermaßen aktuellen Linux Servern auch denkbar einfach. Das PHP Pear Framework, was oft schon installiert ist, erlaubt mit einigen wenigen Befehlen einen funktionierenden Opcode Cache zu installieren. 
+\subsection{APC} Als allererste Maßnahme wurde ein PHP-Opcode-Cache ausprobiert. Opcode-Caches speichern das Kompilat vorangegangener Operationen und können so beim nächsten Aufruf direkt die Berechnung ausf\"uhren. Solche Systeme sind immer zu empfehlen, da sie normalerweise keinerlei Probleme bereiten und alle PHP Anfragen beschleunigen. Aktuell gibt es mehrere dieser auch PHP Beschleuniger genannte Opcode-Caches. Unter ihnen nimmt aber APC\footnote{Alternative PHP Cache - \url{http://pecl.php.net/package/APC}} eine führende Position ein. Hauptsächlich weil es der zuverlässigste unter den nicht-kommerziellen Caches ist. Ab PHP Version 5.4 wird er in PHP schon enthalten sein. Die Installation von APC ist auf einigermaßen aktuellen Linux Servern auch denkbar einfach. Das PHP-Pear-Framework, was oft schon installiert ist, erlaubt mit einigen wenigen Befehlen einen funktionierenden Opcode-Cache zu installieren. 
 \begin{lstlisting}[language=bash,label=Installation von APC,caption=Installation von APC]
 apt-get install php-pear
 pecl install apc
 \end{lstlisting}
-Nach der Installation wurde die Antwortzeit des Apacheservers gemessen und es kam zu folgendem Ergebnis. Statt 363 ms wurden nur noch 233 ms benötigt, eine Verbesserung um 36\% und es können 4,28 Anfragen je Sekunde bearbeitet werden gegenüber vorher nur 2,75. Alles unter der Prämisse, dass es keine multiplen Anfragen gibt. 
+Nach der Installation wurde die Antwortzeit des Apacheservers gemessen und es kam zu folgendem Ergebnis. Statt 363 ms wurden nur noch 233 ms benötigt, eine Verbesserung um 36\% und es können 4,28 Anfragen je Sekunde bearbeitet werden gegenüber vorher nur 2,75. Alles unter der Prämisse, dass es keine nebnl\"aufigen Anfragen gibt. 
 \begin{lstlisting}[language=bash,label=Ausgabe von ab,caption=Ausgabe von ab]
 Server Software:        Apache/2.2.16
 Server Hostname:        itsax.it-jobs-und-stellen.de
@@ -141,6 +138,7 @@ Time per request:       233.620 [ms] (mean, across all concurrent requests)
 Transfer rate:          272.69 [kBytes/sec] received
 \end{lstlisting}
 \subsection{Drupal Cache}
+
 \begin{lstlisting}[language=bash,label=Ausgabe von ab,caption=Ausgabe von ab]
 Server Software:        Apache/2.2.16
 Server Hostname:        itsax.it-jobs-und-stellen.de
