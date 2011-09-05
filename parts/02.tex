@@ -12,8 +12,13 @@ Im Rahmen dieser Bachelorarbeit werden verschiedenste Technologien verwendet und
   \item[Drupal] ist ein CMS und Framework, welches in PHP geschrieben ist und viele direkt nutzbare Funktionen mitbringt. Dazu gehören unter anderem Administrationsoberflächen, News-Aggregatoren, Veröffentlichungsabläufe für Artikel und Blogbeiträge sowie Suchmaschinenoptimierungen. Außerdem ermöglicht Drupal die Installation weiterer, durch Nutzer entwickelte, Module. Dadurch wird eine fast unbegrenzte Funktionsvielfalt ermöglicht. Im vorliegenden Fall wird Drupal in der Version 5 eingesetzt.
   \item[Client] Der Browser des Nutzers erwartet in der Regel ein HTML Dokument. Dies wird durch Drupal generiert und vom Webserver ausgeliefert. Dabei werden Bilder verarbeitet, JavaScript Skripte ausgeführt und andere Elemente, wie Flash-Applikationen und Videos, berechnet. 
 \end{description}
-
-%TODO Bildchen vom Ablauf!
+In Abbildung \ref{fig:techstack} ist eine schematische Darstellung eines Webseitenaufrufs skizziert. Die orangenen Pfeile stellen eine Anfrage da und die gr\"unen Pfeile die Antworten.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=1.0]{material/techstack.png}
+  \caption{Grunds\"atzlicher Ablauf eines Webseitenaufrufs.}
+  \label{fig:techstack}
+\end{figure}
 
 \section{Methoden der Web-Performance-Optimierung}
 Die Methoden zur Leistungssteigerung können wie im Technologiestack untergliedert und jedes Element kann für sich betrachtet werden.
@@ -69,7 +74,7 @@ Als Schnittstelle zwischen Nutzer und Webseite ist der Browser ein besonders kri
 Für Entwickler bedeutet die Browser-Vielfalt zusätzlichen Entwicklungsaufwand. Unrühmlichstes Beispiel ist der Internet Explorer 6.\footnote{Auszug aus Bugs des Internet Explorer 6: \url{http://www.dosonaro.com/6-der-haeufigsten-ie-bugs-und-wie-man-sie-behebt/}} Seine Kompatibilitätsprobleme sind so schwerwiegend, dass mittlerweile auch vom Hersteller Microsoft ein Update dringendst empfohlen wird.\footnote{Internet Explorer 6 Countdown: \url{http://www.ie6countdown.com/}}\citep{Microsoft2011} Um die Standardkompatibilität zu messen, wurden die Acid\footnote{\url{http://www.acidtests.org/}} Tests entwickelt. Der Internet Explorer 6 schafft im Acid3\footnote{Acid3 Test:\url{http://acid3.acidtests.org/}}-Test nur 11 von 100 Punkten. Moderne Browser, wie Google Chrome und auch der Internet Explorer 9, schaffen Werte über 90 von 100 Punkten. Neben Kompatibilität haben noch andere Leistungsparameter Einfluss auf die Ladezeiten. Die Javascript Ausführungszeiten kann man unter anderem mit dem SunSpider JavaScript Benchmark\footnote{Der Test wird direkt unter folgender URL angeboten: \url{http://www.webkit.org/perf/sunspider/sunspider.html}} testen. Einen Vergleich aktueller Browser zeigt Abbildung \ref{fig:sunspider}. Es wird deutlich, dass die Browser-Hersteller versuchen ein einheitlich gutes Level zu erreichen.  
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=1.1\textwidth]{material/sunspiderbenchmark.png}
+  \includegraphics[width=0.9\textwidth]{material/sunspiderbenchmark.png}
   \caption{SunSpider Benchmark der letzten Browsergeneration}
   \label{fig:sunspider}
 \end{figure}

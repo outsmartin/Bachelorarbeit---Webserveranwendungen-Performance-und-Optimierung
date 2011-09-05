@@ -8,40 +8,34 @@
   \item[CPU] Central Processing Unit
   \item[RAID] Central Processing Unit
   \item[SSD] Central Processing Unit
-  \item[DOM] Document Object Model\footnote{Document Object Model - Eine Schnittstelle f\"ur den Zugriff auf ein Dokument und dessen \"Anderung. \url{http://www.w3.org/DOM/\#what}}
+  \item[DOM] Document Object Model
   \item[DDoS] Distributed Denial of Service
-  \item[MIME] Distributed Denial of Service
-  \item[TtfB] Distributed Denial of Service
-  \item[TtsR] Distributed Denial of Service
-  \item[LT] Distributed Denial of Service
-  \item[APC] Distributed Denial of Service
-  \item[PNG] Distributed Denial of Service
-  \item[URI] Distributed Denial of Service
-  \item[CDN] Distributed Denial of Service
-MIME
-TtfB
-TtsR
-LT
-APC
-PNG
-URI
-CDN
+  \item[MIME] Multipurpose Internet Mail Extensions
+  \item[TtFB] Time to First Byte
+  \item[TtsR] Time to start Render
+  \item[LT] Load Time
+  \item[APC] Alternative PHP Cache
+  \item[PNG] Portable Network Graphics
+  \item[URI] Uniform Resource Identifier
+  \item[CDN] Content Distribution Network
 \end{basedescript}
 \section*{Glossar}
 \begin{basedescript}{\desclabelstyle{\pushlabel}\desclabelwidth{6em}}
   \item[Ajax] ist ein Konzept zur asynchronen Daten\"ubetragung.
   \item[Community] Zusammenschluss vieler Teilnehmer, um ein gemeinsames Ziel zu erreichen.
-  \item[CMS] Ein Inhaltsverwaltungssystem erm\"oglicht auch Personen ohne Programmierkenntnisse die Administration einer Webseite.
+  \item[CMS] Ein Content-Management-System erm\"oglicht auch Personen ohne Programmierkenntnisse die Administration einer Webseite.
   \item[gzip] Ein Programm f\"ur Komprimierungsaufgaben.
   \item[Apache Webserver] Apache ist seit 1996 der popul\"arste Web Server auf dem Markt. Eine sehr gro\ss{}e Open-Source-Gemeinde sorgt f\"ur Updates und Zusatzmodule.
-MyISAM
-InnoDB
-MySQL
+  \item[DOM] Eine Schnittstelle f\"ur den Zugriff auf ein Dokument und dessen \"Anderung. \url{http://www.w3.org/DOM/\#what}
+  \item[MyISAM]
+  \item[InnoDB]
+  \item[MySQL]
 \end{basedescript}
+\newpage
 \part{Einleitung}
 \epigraph{``Human beings don’t like to wait. We don’t like waiting in line at a store, we don’t like waiting for our food at a restaurant, and we definitely don’t like waiting for Web pages to load.''}{Alberto Savoia}
 
-Jeder Internetnutzer hat eine gewisse Toleranz gegenüber langsamen Webseiten. Wenn er jedoch auf eine Webseite zu lange warten muss, geht er zur Konkurrenz.\citep{websiteoptimization2008} Um dies zu verhindern, hat das Thema Web-Performance in der letzten Zeit immer mehr an Bedeutung gewonnen. Aber was bedeutet Web-Performance eigentlich? Zum einen gibt es die subjektive Performance, die ein Besucher beim Browsen einer Webseite empfindet. Gibt es für den Nutzer bemerkbare Wartezeiten oder reagiert die Webseite schneller als die Wahrnehmungsschwelle? Solche Kriterien sind sehr wichtig bei interaktiven Webseiten und haben auch zum Erfolg von Ajax beigetragen. Zum anderen kann man auch eine objektive Aussage über die Geschwindigkeit, mit der eine Webseite generiert, ausgeliefert und beim Besucher im Browser angezeigt wird, treffen. 
+Jeder Internetnutzer hat eine gewisse Toleranz gegenüber langsamen Webseiten. Wenn er jedoch auf eine Webseite zu lange warten muss, geht er zur Konkurrenz\citep{websiteoptimization2008}. Um dies zu verhindern, hat das Thema Web-Performance in der letzten Zeit immer mehr an Bedeutung gewonnen. Aber was bedeutet Web-Performance eigentlich? Zum einen gibt es die subjektive Performance, die ein Besucher beim Browsen einer Webseite empfindet. Gibt es für den Nutzer bemerkbare Wartezeiten oder reagiert die Webseite schneller als die Wahrnehmungsschwelle? Solche Kriterien sind sehr wichtig bei interaktiven Webseiten und haben auch zum Erfolg von Ajax beigetragen. Zum anderen kann man auch eine objektive Aussage über die Geschwindigkeit, mit der eine Webseite generiert, ausgeliefert und beim Besucher im Browser angezeigt wird, treffen. 
 \label{sec:intro}
 \section{Motivation}
 Der Autor dieser Arbeit absolvierte sein Pflichtpraktikum in der pludoni GmbH und war bis zum heutigen Tag als Werksstudent tätig. Bei dieser T\"atigkeit kamen immer \"ofter Performance Probleme zum Tragen. Um diesen zu begegnen, entstand diese Arbeit.
@@ -60,4 +54,4 @@ Das Unternehmen wurde 2008 von Dr. Jörg Klukas gegründet und hat als Ziel, den
 Alle Communities sind zum heutigen Zeitpunkt durch das Content-Management-System Drupal 5 realisiert. Drupal 5 ist mittlerweile schon vier Jahre alt und nicht mehr auf dem neuesten Entwicklungsstand der Web-Performance. Es gibt Drupal mittlerweile schon in der Version 7.7 und viele Verbesserungen in Sachen Geschwindigkeit wurden seither realisiert. Leider ist es nicht trivial ein Upgrade durchzuführen, da viele Strukturen sich stark verändert haben. Aus diesem Grund wurde der Autor damit beauftragt, die Möglichkeiten einer Drupal 5 Optimierung am Beispiel der ältesten Community ITsax.de zu ergründen und, wenn vorhanden, durchzuführen. Dabei soll ein Leitfaden entwickelt werden, anhand dessen Drupal 5 und allgemein Webseiten effizient optimiert werden können.
 
 \section{Aufbau}
-Die Arbeit ist in zwei Teile aufgeteilt. Der Theorieteil beschäftigt sich mit den Grundlagen der Web Performance beziehungsweise der Web Performance Optimierung. Im Anschluss daran werden im Praxisteil Performancemängel der Webseite ITsax.de untersucht und, sofern vorhanden, behoben. 
+Die Arbeit ist in zwei Teile aufgeteilt. Der Theorieteil beschäftigt sich mit den Grundlagen der Web-Performance beziehungsweise der Web-Performance-Optimierung. Im Anschluss daran werden im Praxisteil Performance-Mängel der Webseite ITsax.de untersucht und, sofern vorhanden, behoben. 

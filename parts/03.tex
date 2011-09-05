@@ -9,7 +9,7 @@ Der Optimierungsversuch kann leider nicht auf dem Livesystem durchgeführt werde
   \item Arbeitsspeicher: 8 GB DDR3 RAM
   \item Festplatten: 2 x 750 GB SATA-II HDD (Software-RAID 1)
   \item Netzwerkverbindung: 100Mbit
-  \item Server Software: Apache/2.2.16 (Module)
+  \item Server Software: Apache/2.2.16
   \item PHP Version: PHP 5.2.6-1+lenny13 with Suhosin-Patch 0.9.6.2
   \item Mysql Version: 14.12 Distrib 5.0.51a 
   \item Betriebssystem: Debian 4.1.2-25 mit Kernel 2.6.26-26lenny2
@@ -17,7 +17,7 @@ Der Optimierungsversuch kann leider nicht auf dem Livesystem durchgeführt werde
 \end{itemize}
 
 \section{Testverfahren}
-Das Testen von Web-Performance hat sich in den letzten Jahren stetig weiterentwickelt. Eine Zeit lang galten sogenannte Backbonetests\footnote{Tests, die direkt am Backbone, also im Rechenzentrum durchgef\"uhrt werden. F\"uhrt zu besseren Ergebnissen, da der Client und der Testserver direkt verbunden sind. Dieser Test spiegelt aber nicht die Wirklichkeit wieder.} als das Non-Plus-Ultra. Nachdem aber immer deutlicher wurde, dass die tatsächlichen Ergebnisse sich stark von den Erwartungen unterscheiden, suchte man nach Alternativen. Der verlässlichste Test wird natürlich direkt beim Kunden beziehungsweise der Zielgruppe durchgeführt. Da es oft schwierig ist diese Tests durchzuführen, sollte zumindest mit ähnlichen Vorraussetzungen getestet werden.
+Das Testen von Web-Performance hat sich in den letzten Jahren stetig weiterentwickelt. Eine Zeit lang galten sogenannte Backbonetests\footnote{Tests, die direkt am Backbone, also im Rechenzentrum durchgef\"uhrt werden. F\"uhrt zu besseren Ergebnissen, da der Client und der Testserver direkt verbunden sind. Dieser Test spiegelt aber nicht die Wirklichkeit wieder.} als das Non-Plus-Ultra. Nachdem aber immer deutlicher wurde, dass die tatsächlichen Ergebnisse sich stark von den Erwartungen unterscheiden, suchte man nach Alternativen. Der verlässlichste Test wird natürlich direkt beim Kunden beziehungsweise der Zielgruppe durchgeführt. Da es oft schwierig ist diese Tests durchzuführen, sollte zumindest mit ähnlichen Voraussetzungen getestet werden.
 \subsection{Servertest}
 Die rein serverseitigen Optimierungen wurden mit "`ab"' getestet. "`ab"', das für "`apache bench"' steht, wurde entwickelt, um Apache Server zu testen. Es analysiert, wie lange ein Server braucht, um Webseiten auszuliefern und wieviele Anfragen er pro Sekunde befriedigen kann, ohne dass es zu Ausfällen kommt. "`ab"' führt die gewünschte Anzahl an Anfragen hintereinander, mit der gewählten Anzahl an nebenläufigen Zugriffen (Concurrency) auf die Ressource, aus und berechnet dann anhand der Ergebnisse die durchschnittliche Antwortzeit. Der Kommandozeilenbefehl, der zum Testen genutzt wurde, war denkbar einfach:
 \begin{lstlisting}[language=bash,label="`ab"' mit Parametern,caption="`ab"' mit Parametern]
@@ -35,44 +35,72 @@ Browsertests k\"onnen durch die komplexen Voraussetzungen keine exakten Ergebnis
   \item Only First View\footnote{Nur ungecachte Zugriffe werden getestet.}
 \end{itemize}
 \subsection{Andere Analyseverfahren}
-Profiling und Debugging auf Codeebene wurden nur sporadisch eingesetzt, da sie den Anwendungsfall Webseite nur eingeschränkt betreffen. Durch Caching kann die Codeausführungszeit größtenteils eliminiert werden. Bei Anwendungsfällen, die kein Caching erlauben, wie zum Beispiel eine Suche oder eine Applikation, ist es aber sehr hilfreich diese Tools zu verwenden. Sie ersparen viel Arbeit, da die Problemstellen schnell ausgemacht werden können. Von Hand diese Arbeiten durchzuführen, ist in kleinen Projekten sehr mühsam und in großen Projekten fast unmöglich. Jeder Entwickler sollte solche Programme in seinem Repertoire haben.
-%TODO Brau
+Profiling und Debugging auf Codeebene wurden nur sporadisch eingesetzt, da sie den Anwendungsfall Webseite nur eingeschränkt betreffen. Durch Caching kann die Codeausführungszeit größtenteils eliminiert werden. Bei Anwendungsfällen, die kein Caching erlauben, wie zum Beispiel eine Suche oder eine Applikation, ist es aber sehr hilfreich diese Tools zu verwenden. Sie ersparen viel Arbeit, da die Problemstellen schnell ausgemacht werden können. Von Hand diese Arbeiten durchzuführen, ist in kleinen Projekten sehr mühsam und in großen Projekten fast unmöglich. Jeder Entwickler sollte solche Programme in seinem Repertoire haben. In Abbildung \ref{fig:cachegrind} ist eine Auswertung des Startvorganges mit Hilfe von KCachegrind zu sehen.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{material/cachegrind.jpg}
+  \caption{KCachegrind ist ein Profilingtool}
+  \label{fig:cachegrind}
+\end{figure}
+
+
 \section{Ausgangszustand}  
 Sreeram Ramachandran, ein Software Ingenieur der Firma Google, hat eine Analyse über 4.2 Milliarden Seiten veröffentlicht. Diese ist im Rahmen der Initiative "`Let's make the web faster"' entstanden und zeigt häufige Fehlerquellen und ungenutztes Potential auf. Die durchschnittliche Webseite hat laut Ramachandran 320 kB Größe, 44 verschiedene Ressourcen und es werden nur 66\% der komprimierbaren Inhalte tatsächlich komprimiert.\citep{Google2011a}
-ITsax.de hat 106 Ressourcen und 444 kB an Daten. Schon anhand dieser zwei Zahlen lässt sich eine vergleichsweise schwache Leistung vorhersehen. Besonders die Anzahl an verschiedenen Ressourcen deutet auf Missstände hin, da Parallelisierung von Zugriffen nur bis zu einem bestimmten Grad möglich ist. Die Time to First Byte (TtFB) von 674ms bezeichnet die Zeit, die vergeht bis der Webbrowser die ersten Daten empfängt. Der Nutzer hat aber zu diesem Zeitpunkt noch keinen Inhalt pr\"asentiert bekommen. Die Inhalte werden erst angezeigt, nachdem die Time to Start Render (TtSR) vergangen ist. Der Nutzer muss demnach ungefähr zwei Sekunden warten, bis die Webseite im Browser anfängt sich aufzubauen. Die Load Time (LT) bezeichnet dann die Zeit die vergeht, bis die Seite komplett dargestellt wird und der Benutzer sie ohne Einschränkungen bedienen kann. Es können aber auch nach der LT noch Inhalte nachgeladen werden, wie zum Beispiel gestreamte Videos oder andere asynchrone Inhalte. Diese nachgeladenen Inhalte wirken sich aber nicht mehr negativ auf die User Experience aus, solange sie im Rahmen bleiben und nicht wichtige Teile der Webseite, wie zum Beispiel das Hauptmenü, noch per Flash geladen werden müssen. Die Anzahl der DOM Elemente bezeichnet alle vom Browser zu verarbeitenden Objekte und ist ein Indikator für die Komplexität der Webseite. Je mehr Elemente also vorhanden sind, desto länger muss der Browser die Positionierung und Darstellung berechnen. Mit 855 DOM Elementen gehört ITsax.de leider schon zu den komplexeren Seiten, was zu einem Großteil Drupal anzurechnen ist, welches auf Kosten der Performance andere Aspekte, wie Konfigurierbarkeit, in den Vordergrund stellt. Die Inhalte auf der Seite Itsax.de wurden mit dem Analysetool webpagetest.org ausgewertet. Die Ergebnisse sind in Abbildung \ref{fig:startbyte} und \ref{fig:startrequest} dargestellt, einmal in Bezug auf Größe und einmal aufgeschlüsselt nach der Anzahl der benötigten Requests, um die Inhalte vom Server anzufordern. Die numerischen Werte sind in der Tabelle 1 respektive Tabelle 2 erfasst.
+ITsax.de hat 106 Ressourcen und 444 kB an Daten. Schon anhand dieser zwei Zahlen lässt sich eine vergleichsweise schwache Leistung vorhersehen. Besonders die Anzahl an verschiedenen Ressourcen deutet auf Missstände hin, da Parallelisierung von Zugriffen nur bis zu einem bestimmten Grad möglich ist. Die Time to First Byte (TtFB) von 674ms bezeichnet die Zeit, die vergeht bis der Webbrowser die ersten Daten empfängt. Der Nutzer hat aber zu diesem Zeitpunkt noch keinen Inhalt pr\"asentiert bekommen. Die Inhalte werden erst angezeigt, nachdem die Time to Start Render (TtSR) vergangen ist. Der Nutzer muss demnach ungefähr zwei Sekunden warten, bis die Webseite im Browser anfängt sich aufzubauen. Die Load Time (LT) bezeichnet dann die Zeit die vergeht, bis die Seite komplett dargestellt wird und der Benutzer sie ohne Einschränkungen bedienen kann.
+Die Webseite ist in Abbildung \ref{fig:itsax} zu sehen. 
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{material/startseite.png}
+  \caption{Größe der Inhalte}
+  \label{fig:itsax}
+\end{figure}
+Es können aber auch nach der LT noch Inhalte nachgeladen werden, wie zum Beispiel gestreamte Videos oder andere asynchrone Inhalte. Diese nachgeladenen Inhalte wirken sich aber nicht mehr negativ auf die User Experience aus, solange sie im Rahmen bleiben und nicht wichtige Teile der Webseite, wie zum Beispiel das Hauptmenü, noch per Flash geladen werden müssen. Die Anzahl der DOM Elemente bezeichnet alle vom Browser zu verarbeitenden Objekte und ist ein Indikator für die Komplexität der Webseite. Je mehr Elemente also vorhanden sind, desto länger muss der Browser die Positionierung und Darstellung berechnen. Mit 855 DOM Elementen gehört ITsax.de leider schon zu den komplexeren Seiten, was zu einem Großteil Drupal anzurechnen ist, welches auf Kosten der Performance andere Aspekte, wie Konfigurierbarkeit, in den Vordergrund stellt. Die Inhalte auf der Seite Itsax.de wurden mit dem Analysetool webpagetest.org ausgewertet. Die Ergebnisse sind in Abbildung \ref{fig:startbyte} und \ref{fig:startrequest} dargestellt, einmal in Bezug auf Größe und einmal aufgeschlüsselt nach der Anzahl der benötigten Requests, um die Inhalte vom Server anzufordern. 
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.5]{material/start_byte_pie.png}
   \caption{Größe der Inhalte}
   \label{fig:startbyte}
 \end{figure}
-\begin{tabbing}
-Request \quad\= blablabla \quad\= \kill
-\textbf{Typ} 	 \> \textbf{Byte} \\
-image/jpeg	\>142251\\
-image/png	\>101428\\
-javascript	\>84758\\
-image/gif	\>73378\\
-text/css	\>30222\\
-text/html	\>29917\\
-\end{tabbing}
-
 \begin{figure}[!ht]
   \centering
   \includegraphics[scale=0.5]{material/start_request_pie.png}
   \caption{HTTP Anfragen}
   \label{fig:startrequest}
 \end{figure}
-\begin{tabbing}
-Request \quad\= blablabla \quad\= \kill
-\textbf{Typ} 	 \> \textbf{Anzahl} \\
-text/css	 \>	24 	\\
-image/gif	 \>	23 	\\
-image/jpeg	 \>	22 	\\
-javascript	 \>	20 	\\ 
-image/png	 \>	15 	\\
-text/html	 \>	2 	\\
-\end{tabbing}
+
+
+Die numerischen Werte sind in den entsprechenden Tabellen erfasst.
+\begin{table}[!ht]
+\centering
+\caption{\"Ubersicht der Datenmenge}
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
+    \hline
+    MIME-Typ &	Menge in Byte	\\ \hline
+    image/jpeg	&142251\\ \hline
+    image/png	&101428\\ \hline
+    javascript	&84758\\ \hline
+    image/gif	&73378\\ \hline
+    text/css	&30222\\ \hline
+    text/html	&29917\\ \hline
+    \hline
+    \end{tabular}
+\end{table}
+\begin{table}[!ht]
+\centering
+\caption{\"Ubersicht der HTTP-Requests}
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
+    \hline
+    MIME-Typ &	Menge in Byte	\\ \hline
+    text/css	 &	24 	\\ \hline
+image/gif	&	23 	\\ \hline
+image/jpeg	&	22 	\\ \hline
+javascript	&	20 	\\  \hline
+image/png	&	15 	\\ \hline
+text/html	&	2 	\\ \hline
+    \hline
+    \end{tabular}
+\end{table}
+
 Leicht zu erkennen ist, dass der HTML Anteil, sowohl bei der Größe als auch bei Anzahl der HTTP Anfragen, eine untergeordnete Rolle spielt. Nicht vergessen werden darf aber die Zeit, die der Server benötigt, um den HTTP Code zu generieren. Dies kann man sehr gut im Wasserfalldiagramm in Abbildung \ref{fig:startwaterfall} erkennen, in welchem der Start des Ladevorgangs hervorgehoben wurde. Bevor der Initiale GET Request abgeschlossen ist, weiß der Browser noch nicht, welche Ressourcen er laden muss und es können noch keine anderen Aktionen ausgeführt werden.
 \begin{figure}[!ht]
   \centering
@@ -107,6 +135,7 @@ Time per request:       363.640 [ms] (mean, across all concurrent requests)
 Transfer rate:          175.46 [kBytes/sec] received
 \end{lstlisting}
 \end{minipage}
+
 \section{Implementierung und Test der einzelnen Methoden}
 Im folgenden Abschnitt werden die eingesetzten Methoden dargestellt und ihre Auswirkungen auf die Webperformance der Seite ITsax.de aufgezeigt. 
 Dabei werden alle Methoden, die vom Autor, nach der Analyse des Ausgangszustands, für möglicherweise sinnvoll befunden wurden, getestet. Die Methode wird jeweils mit dem Startwert verglichen und der Aufwand eingeschätzt.
@@ -170,9 +199,10 @@ Die Zeit pro Anfrage wird deutlich kleiner und es wird klar, dass Caching f\"ur 
 \subsection{JS Aggregation und Minifizierung mit dem Javascript Aggregation Modul}
 Aggregation und Minifizierung sind Verfahren, die in der Web-Performance-Optimierung häufig eingesetzt werden. Für das Drupal 5 System gibt es fertige Module, die diese Aufgabe übernehmen. Das Modul interveniert innerhalb des Drupal Kerns. Dort werden die Javascripte ersetzt, die vorher direkt so ausgegeben wurden wie sie die Module lieferten. Stattdessen wird eine einzelne, das heisst aggregierte Version, die optional minifiziert werden kann, ausgeliefert. Diese Minifizierung wird natürlich genutzt und spart einige kB. Ermöglicht wird dies durch die Nutzung von JSmin\footnote{Bibliothek zur Minifizierung von JavaScript. \url{https://github.com/rgrove/jsmin-php/}}. JSmin ist ein Filter, der unter anderem Kommentare entfernt und mehrere Leerzeichen zu einem zusammenfasst. Durch die Nutzung dieser Methode konnten 11 HTTP Abfragen und 11 kB an Datenvolumen eingespart werden.
 
-\begin{table}[h]
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der JS Aggregation und Komprimierung}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.658s 	\\ \hline
     Time to First Byte:		& 0.595s  	\\ \hline
@@ -181,7 +211,7 @@ Aggregation und Minifizierung sind Verfahren, die in der Web-Performance-Optimie
     \#Requests:			& 95 		\\ \hline
     Bytes In:			& 432 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 %Load Time: 3.658s
 %Time to First Byte: 0.595s
@@ -194,9 +224,10 @@ Aggregation und Minifizierung sind Verfahren, die in der Web-Performance-Optimie
 \subsection{CSS Aggregation und Komprimierung}
 Analog zur Javascript Optimierung kann man auch die CSS Aggregation betrachten. Dabei werden durch Zusammenfassung der einzelnen CSS Dateien HTTP Abfragen eingespart. Wie man an der gesunkenen Anzahl der Requests sehen kann, wurden 21 Abfragen nur durch Zusammenfügen der einzelnen CSS Dateien zu einer einzigen eingespart. Durch die Bereinigung beziehungsweise Komprimierung werden dabei außerdem 17 kB an überflüssigen Zeichen entfernt. 
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der CSS Aggregation und Komprimierung}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.577s 	\\ \hline
     Time to First Byte:		& 0.649s  	\\ \hline
@@ -205,7 +236,7 @@ Analog zur Javascript Optimierung kann man auch die CSS Aggregation betrachten. 
     \#Requests:			& 85 		\\ \hline
     Bytes In:			& 427 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 %Load Time: 3.577s
 %Time to First Byte: 0.649s
@@ -219,9 +250,10 @@ Analog zur Javascript Optimierung kann man auch die CSS Aggregation betrachten. 
 Das Boost Modul ist ein Cache für statische Seiten, der allerdings nur für nicht-angemeldete Gastnutzer funktioniert. Da ITsax.de fast ausschließlich von Gastnutzern besucht wird, bietet es sich an, dieses Modul zum Cachen kompletter Seiten zu nutzen. Dabei k\"onnen HTML, XML, Ajax, CSS und Javascript Dokumente gecacht werden. Zus\"atzlich k\"onnen diese durch gzipping komprimiert werden.
 Die genutzen Techniken sind sehr performant und bauen auf einem Dateisystemcache auf. Das bedeutet, jede Seite wird komplett auf der Festplatte abgelegt. Alle Arten von serverseitigen Prozessen werden so nach dem initialem Seitenaufruf, der das Caching auslöst, nicht mehr durchlaufen. Dies sieht man sehr gut an der Time to First Byte. Von den 172 ms werden ca. 50 ms für den DNS Lookup benötigt und 70 ms für die erste HTTP Verbindung. Der Server braucht demnach nur ca. 50 ms um die Seite auszuliefern. Dies hat natürlich einen sehr positiven Einfluss auf die Gesamtperformance und macht sich besonders beim Endnutzer bemerkbar, da die Seite spürbar schneller anfängt, sich im Browser aufzubauen.
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der Aktivierung des Drupal Boost Moduls}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.233s 	\\ \hline
     Time to First Byte:		& 0.172s  	\\ \hline
@@ -230,7 +262,7 @@ Die genutzen Techniken sind sehr performant und bauen auf einem Dateisystemcache
     \#Requests:			& 106 		\\ \hline
     Bytes In:			& 444 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 
 
@@ -247,7 +279,6 @@ Bilder und Grafiken bieten oft großen Optimierungsspielraum. Zum einen erfolgt 
 
 \subsubsection{Verlustfreie Kompression} 
 Technisch wird eine verlustfreie Kompression durch Verfahren wie die Huffman-Codierung oder die Lauflängenkodierung umgesetzt. Im Fall des PNG-Formats wird die Komprimierungsmethode Deflate genutzt. Außerdem werden Vorfilter, in Form von prädikativer Kodierung, eingesetzt. Diese berechnen die wahrscheinlichen Farbwerte und es müssen nur die Abweichungen gespeichert werden. 
-%TODO quelle
 
 Die Befehle sehen dann wie folgt aus:
 \begin{lstlisting}[language=bash,label=verlustfreies Optimieren mit "find",caption= verlustfreies Optimieren mit "find"]
@@ -257,9 +288,10 @@ find . -name "*.jpg" -exec jpegoptim {} \;
 
 Auf jeden Fall sollte eine verlustfreie Komprimierung durchgeführt werden, da die Bilder in diesem Fall nur an Dateigröße verlieren und die Bildqualität unberührt bleibt. 
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der verlustfreien Kompression der Bilder}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.640s 	\\ \hline
     Time to First Byte:		& 0.636s  	\\ \hline
@@ -268,7 +300,7 @@ Auf jeden Fall sollte eine verlustfreie Komprimierung durchgeführt werden, da d
     \#Requests:			& 106 		\\ \hline
     Bytes In:			& 429 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 %%http://optipng.sourceforge.net/
 %%http://www.kokkonen.net/tjko/projects.html
@@ -290,9 +322,10 @@ find . -name "*.jpg" -exec jpegoptim {} \;
 \end{lstlisting}
 \end{minipage}
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der verlustbehafteten Kompression der Bilder}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.255s 	\\ \hline
     Time to First Byte:		& 0.669s  	\\ \hline
@@ -301,7 +334,7 @@ find . -name "*.jpg" -exec jpegoptim {} \;
     \#Requests:			& 106 		\\ \hline
     Bytes In:			& 371 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 
 %Load Time: 3.255s
@@ -315,9 +348,10 @@ find . -name "*.jpg" -exec jpegoptim {} \;
 \subsection{Drupal 5 Fehler bei umgefärbten Themes}
 Das Framework Drupal 5 benutzt Themes zur Gestaltung der Oberfläche. Um diese farblich anpassen zu können, wurde das Color Modul installiert, welches Themeveränderungen ermöglicht. Aufgrund der Tatsache, dass das Theme nur kopiert wird und im Anschluss die Farben geändert werden, entstehen bei diesem Vorgang unnötige Duplikate, die beim Laden der Seite mitgeschleppt werden. Um diese zu entfernen, wird einfach das Standardtheme durch das Modifizierte ersetzt. Dafür müssen  nur noch einige Pfade in der style.css angepasst werden und man spart in dem Fall von itsax.de 4 kB, was immerhin ca 1\% der übertragenen Datenmenge ausmacht. Umgesetzt wurde diese Ma\ss{}nahme, indem die Duplikate manuell zu einer Datei zusammengef\"uhrt wurden. Oftmals m\"ussen nur Farbangaben ersetzt werden, um die gew\"unschten Resultate zu erzielen. Danach wird das Theme durch die zusammengef\"uhrte Datei ersetzt. Das Color-Modul kann im Anschluss deaktiviert werden.
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der Fehlerbereinigung des Theme Moduls}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.626s 	\\ \hline
     Time to First Byte:		& 0.629s  	\\ \hline
@@ -326,7 +360,7 @@ Das Framework Drupal 5 benutzt Themes zur Gestaltung der Oberfläche. Um diese f
     \#Requests:			& 104 		\\ \hline
     Bytes In:			& 440 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 %Load Time: 3.626s
 %Time to First Byte: 0.629s %!
@@ -339,9 +373,10 @@ Das Framework Drupal 5 benutzt Themes zur Gestaltung der Oberfläche. Um diese f
 \subsection{Theme Bilder spriten}
 Spriting wurde ursprünglich in der Videospielentwicklung verwendet, um Bilder in den Grafikspeicher zu laden. In der Webentwicklung ist es eine effektive Technik, um Bilder ohne mehrfachen Overhead zu laden. Beim Spriting wird aus vielen Einzelbildern eine Gesamtgrafik erstellt. Um auf die Ursprungsbilder dann einzeln zugreifen zu können, werden CSS Befehle genutzt, die es ermöglichen, die Größe und die Position eines Bildausschnittes anzuzeigen. 
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis des Spritings der Theme Bilder}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.707s 	\\ \hline
     Time to First Byte:		& 0.669s  	\\ \hline
@@ -350,7 +385,7 @@ Spriting wurde ursprünglich in der Videospielentwicklung verwendet, um Bilder i
     \#Requests:			& 103 		\\ \hline
     Bytes In:			& 443 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 %Load Time: 3.707
 %Time to First Byte: 0.669s %!
@@ -364,9 +399,10 @@ Spriting wurde ursprünglich in der Videospielentwicklung verwendet, um Bilder i
 Um zu überprüfen, welchen Einfluss verschiedene, im Netzwerkgraphen auffällige, Module auf die Gesamtperformance haben, werden sie testweise komplett deaktiviert. So kann man entscheiden, bei welchen Modulen zusätzlicher Programmieraufwand lohnenswert ist.
 \subsubsection{Partnerslideshow} Das Deaktivieren der Partnerslideshow hat gravierenden Einfluss auf die Gesamtperformance. Das Modul lädt im aktiven Zustand alle Bilder, die es benötigt und bremst damit den gesamten Ladevorgang aus. Die Ladezeit verringert sich um 27,7\%. Der größte Teil des Geschwindigkeitszuwachses ist der Verringerung der Übertragungsmenge zuzuschreiben. 
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der Deaktivierung der Partnerslideshow}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 2.695s 	\\ \hline
     Time to First Byte:		& 0.636s  	\\ \hline
@@ -375,7 +411,7 @@ Um zu überprüfen, welchen Einfluss verschiedene, im Netzwerkgraphen auffällig
     \#Requests:			& 80 		\\ \hline
     Bytes In:			& 276 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 %Load Time: 2.695s
 %Time to First Byte: 0.636s %!
@@ -386,9 +422,10 @@ Um zu überprüfen, welchen Einfluss verschiedene, im Netzwerkgraphen auffällig
 
 \subsubsection{Facebook Widget} In diesem Fall ist der Einfluss auf die Performance geringer, aber mit einer Verbesserung von 6,7\% auf jeden Fall vorhanden. Das Widget besteht aus neun kleinen Fotos und dem Facebookrahmen. Den größten Effekt hat hier die Verringerung der Anzahl der HTTP Anfragen. So können wichtigere Elemente schneller geladen werden.
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der Deaktivierung des Facebook-Widgets}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.478s 	\\ \hline
     Time to First Byte:		& 0.668s  	\\ \hline
@@ -397,7 +434,7 @@ Um zu überprüfen, welchen Einfluss verschiedene, im Netzwerkgraphen auffällig
     \#Requests:			& 95 		\\ \hline
     Bytes In:			& 406 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 %Load Time: 3.478s
 %ime to First Byte: 0.668s %!
@@ -408,9 +445,10 @@ Um zu überprüfen, welchen Einfluss verschiedene, im Netzwerkgraphen auffällig
 
 \subsubsection{Jobleiste deaktiviert} Die Jobleiste hat einen geringfügig größeren Einfluss auf die Ladezeiten als das Facebook Widget. Die Ursache ist wahrscheinlich in den zusätzlichen Bibliotheken zu suchen, die zu diesem Modul gehören. Darunter sind Ajax Bibliotheken und anderer ThirdParty Code.
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der Deaktivierung der Jobleiste}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.367s 	\\ \hline
     Time to First Byte:		& 0.617s  	\\ \hline
@@ -419,7 +457,7 @@ Um zu überprüfen, welchen Einfluss verschiedene, im Netzwerkgraphen auffällig
     \#Requests:			& 94 		\\ \hline
     Bytes In:			& 411 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 %Load Time: 3.367s
 %Time to First Byte: 0.617s %!
@@ -464,9 +502,10 @@ drupal_add_js('
 \end{minipage}
 An das window Objekt wird in Zeile 3 ein Timer gehängt. Der Timer löst nach 500 ms einen Callback aus, durch den die Funktion delayed\_partnerbox ausgeführt wird. Durch diese Verlagerung des Inhalts braucht die Webseite nur noch 2.749s zum Laden. Bis die Webseite die nachgeladene Slideshow anzeigt, vergehen 3.794s. Die Webseite ist also eher benutzbar und später komplett geladen. In Testverfahren, wie zum Beispiel für das Google Ranking wird nur betrachtet, wann die Seite das Onload Event auslöst. Somit wurde die Seite für Google und den Nutzer schneller. Der Performancegewinn geht, wie in der vorherigen Analyse festgestellt, aus der verringerten Datenmenge hervor. Natürlich spielt auch die Reduzierung der HTTP Anfragen eine Rolle. Die Datenmenge wurde auf 284 kB verringert und es wurden statt 107 nur 82 HTTP Anfragen benötigt.
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der Umprogrammierung der Partner-Slideshow}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 2.749s 	\\ \hline
     Time to First Byte:		& 0.626s  	\\ \hline
@@ -475,7 +514,7 @@ An das window Objekt wird in Zeile 3 ein Timer gehängt. Der Timer löst nach 50
     \#Requests:			& 82 		\\ \hline
     Bytes In:			& 284 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 
 %Time to First Byte: 0.626s %!
@@ -512,9 +551,10 @@ function facebook_show_likebox() {
 \end{minipage}
 Wieder wird als initialer Rückgabewert nur ein leeres DIV-Element ausgegeben. Diesmal kann der HTML Code aber direkt eingefügt werden, ohne den Umweg über eine Javascriptvariable gehen zu müssen. Durch die Verringerung der HTTP Anfragen um 11 und der Webseitengröße um 38 kB kann eine Verbesserung der Ladezeit von 300 ms erzielt werden. 
 
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der Umprogrammierung des Facebook-Widgets}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.411s 	\\ \hline
     Time to First Byte:		& 0.576s  	\\ \hline
@@ -523,7 +563,7 @@ Wieder wird als initialer Rückgabewert nur ein leeres DIV-Element ausgegeben. D
     \#Requests:			& 95 		\\ \hline
     Bytes In:			& 406 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 
 %Load Time: 3.411s (4.258)
@@ -541,9 +581,7 @@ Wieder wird als initialer Rückgabewert nur ein leeres DIV-Element ausgegeben. D
   \caption{Partneranzeigen Block}
   \label{fig:partneranzeigen}
 \end{figure}
-Das Partneranzeigen-Modul musste umprogrammiert werden, da die Startseite durch das Boost Modul gecacht werden soll. Caching bedeutet normalerweise die Abwesenheit dynamischer oder zufälliger Elemente. Da aber bei jedem Besuch der Webseite ein zufälliger Communitypartner angezeigt werden soll, musste eine Lösung gefunden werden. Gelöst wurde das Problem durch Auslagerung des Codes in einen Callback, der unter einer anderen URI angesprochen werden kann. Das Boost Modul kann solche Inhalte auch cachen. Es ist aber auch über einen URI Filter konfigurierbar. So kann eine performante Startseite mit dynamischen Inhalten realisiert werden. Die Ladezeit wird durch diesen Umweg leider negativ beeinflusst, aber 100 ms stehen in keinem Verhältnis zu dem Gewinn, der später erzielt wird. Da in einer Drupal Umgebung gearbeitet wird, kann leicht über einen Menü hook dem System die neue URI mitgeteilt werden. Wenn sie, nachdem sie bekannt gemacht wurde, aufgerufen wird, liefert sie den einzufügenden HTML Code aus.
-%TODO URI???
-%menuhook???
+Das Partneranzeigen-Modul musste umprogrammiert werden, da die Startseite durch das Boost Modul gecacht werden soll. Caching bedeutet normalerweise die Abwesenheit dynamischer oder zufälliger Elemente. Da aber bei jedem Besuch der Webseite ein zufälliger Communitypartner angezeigt werden soll, musste eine Lösung gefunden werden. Gelöst wurde das Problem durch Auslagerung des Codes in einen Callback, der unter einer anderen URI angesprochen werden kann. Das Boost Modul kann solche Inhalte auch cachen. Es ist aber auch über einen URI Filter konfigurierbar. So kann eine performante Startseite mit dynamischen Inhalten realisiert werden. Die Ladezeit wird durch diesen Umweg leider negativ beeinflusst, aber 100 ms stehen in keinem Verhältnis zu dem Gewinn, der später erzielt wird. Da in einer Drupal Umgebung gearbeitet wird, kann leicht über einen Menü-Hook\footnote{Hooks sind eine Programmierschnittstelle von Drupal.} dem System die neue URI mitgeteilt werden. Wenn sie, nachdem sie bekannt gemacht wurde, aufgerufen wird, liefert sie den einzufügenden HTML Code aus.
 
 \begin{minipage}[t]{1\textwidth}
 \begin{lstlisting}[language=php,label=Ajax - hook,caption=Ajax - hook]
@@ -559,7 +597,9 @@ function partneranzeigen_menu() {
 }
 \end{lstlisting}
 \end{minipage}
+
 Eingefügt wird der HTML Code dann über eine Ajax GET Anfrage. Mit der schon bekannten Timeout Methode.
+
 \begin{minipage}[t]{1\textwidth}
 \begin{lstlisting}[language=php,label=Ajax - GET,caption=Ajax - GET]
 function delayed_partneranzeigen(){
@@ -569,9 +609,10 @@ function delayed_partneranzeigen(){
 \end{lstlisting}
 \end{minipage}
 Obwohl die Seite um 31 kB kleiner geworden ist und zwei HTTP Anfragen eingespart werden, wird sie, wie schon erwähnt, langsamer.
-\begin{table}
+\begin{table}[!ht]
+\centering
 \caption{Ergebnis der Umprogrammierung des Partneranzeigen-Moduls}
-    \begin{longtable}{ | p{3cm} | p{1.5cm} | }
+    \begin{tabular}{ | p{3cm} | p{1.5cm} | }
     \hline
     Load Time: 			& 3.871s 	\\ \hline
     Time to First Byte:		& 0.669s  	\\ \hline
@@ -580,7 +621,7 @@ Obwohl die Seite um 31 kB kleiner geworden ist und zwei HTTP Anfragen eingespart
     \#Requests:			& 105 		\\ \hline
     Bytes In:			& 417 kB 	\\ \hline
     \hline
-    \end{longtable}
+    \end{tabular}
 \end{table}
 %Load Time: 3.871s (5.759s)
 %Time to First Byte: 0.669s %!
@@ -602,6 +643,7 @@ Nach nur einer Sekunde fängt der Browser an die Seite darzustellen. 2,913 Sekun
 \section{Vergleich}
 Ein abschlie\ss{}ender Vergleich aller Methoden wurde tabellarisch zusammengetragen. In der ersten Spalte steht der Methodenname, darauf folgen die Gesamtladezeit und die Zeit, die der Nutzer warten muss bis der Browser anf\"angt Inhalte darzustellen. Zu jedem Ergebnis wird noch eine Einsch\"atzung abgegeben. Abschlies\ss{}end wurde das Gesamtergebnis in der letzten Zeile dargestellt.
 \begin{table}
+\centering
 \caption{Auswertung der Ergebnisse}
     \begin{longtable}{ | p{3cm} | p{1.5cm} | p{1.5cm} | p{6cm} |}
  
