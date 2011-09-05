@@ -1,17 +1,43 @@
 \section*{Abk\"urzungsverzeichnis}
-\begin{description}
+\begin{basedescript}{\desclabelstyle{\pushlabel}\desclabelwidth{6em}}
   \item[Ajax] Asynchronous JavaScript and XML
   \item[HTML] Hypertext Markup Language
   \item[PHP] Asynchronous JavaScript and XML
   \item[IMAP] Internet Message Access Protocol
   \item[CMS] Content-Management-System
-\end{description}
+  \item[CPU] Central Processing Unit
+  \item[RAID] Central Processing Unit
+  \item[SSD] Central Processing Unit
+  \item[DOM] Document Object Model\footnote{Document Object Model - Eine Schnittstelle f\"ur den Zugriff auf ein Dokument und dessen \"Anderung. \url{http://www.w3.org/DOM/\#what}}
+  \item[DDoS] Distributed Denial of Service
+  \item[MIME] Distributed Denial of Service
+  \item[TtfB] Distributed Denial of Service
+  \item[TtsR] Distributed Denial of Service
+  \item[LT] Distributed Denial of Service
+  \item[APC] Distributed Denial of Service
+  \item[PNG] Distributed Denial of Service
+  \item[URI] Distributed Denial of Service
+  \item[CDN] Distributed Denial of Service
+MIME
+TtfB
+TtsR
+LT
+APC
+PNG
+URI
+CDN
+\end{basedescript}
 \section*{Glossar}
-\begin{description}
-  \item[Ajax] ist ein Konzept zur Asynchronen Daten\"ubetragung.
-  \item[Community] Zusammenschl\"u\ss{} vieler Teilnehmer um ein gemeinsames Ziel zu erreichen.
-  \item[CMS] Ein Inhaltsverwaltungssystem erm\"oglicht es auch Personen ohne Programmierkenntnisse eine Webseite zu administrieren.
-\end{description}
+\begin{basedescript}{\desclabelstyle{\pushlabel}\desclabelwidth{6em}}
+  \item[Ajax] ist ein Konzept zur asynchronen Daten\"ubetragung.
+  \item[Community] Zusammenschluss vieler Teilnehmer, um ein gemeinsames Ziel zu erreichen.
+  \item[CMS] Ein Inhaltsverwaltungssystem erm\"oglicht auch Personen ohne Programmierkenntnisse die Administration einer Webseite.
+  \item[gzip] Ein Programm f\"ur Komprimierungsaufgaben.
+  \item[Apache Webserver] Apache ist seit 1996 der popul\"arste Web Server auf dem Markt. Eine sehr gro\ss{}e Open-Source-Gemeinde sorgt f\"ur Updates und Zusatzmodule.
+MyISAM
+InnoDB
+MySQL
+\end{basedescript}
 \part{Einleitung}
 \epigraph{``Human beings don’t like to wait. We don’t like waiting in line at a store, we don’t like waiting for our food at a restaurant, and we definitely don’t like waiting for Web pages to load.''}{Alberto Savoia}
 
@@ -20,7 +46,7 @@ Jeder Internetnutzer hat eine gewisse Toleranz gegenüber langsamen Webseiten. W
 \section{Motivation}
 Der Autor dieser Arbeit absolvierte sein Pflichtpraktikum in der pludoni GmbH und war bis zum heutigen Tag als Werksstudent tätig. Bei dieser T\"atigkeit kamen immer \"ofter Performance Probleme zum Tragen. Um diesen zu begegnen, entstand diese Arbeit.
 \subsection{pludoni GmbH}
-“pludoni kommt aus dem Esperanto und bedeutet weitergeben.”
+“pludoni kommt aus dem Esperanto und bedeutet weitergeben.” \citep{Klukas2011}
 Das Unternehmen wurde 2008 von Dr. Jörg Klukas gegründet und hat als Ziel, den regionalen Mittelstand bei der Kommunikation und Bewerbersuche durch Communities zu unterstützen. Die von pludoni gemanagten Communities heißen ITsax.de, ITmitte.de und MINTsax.de. Sie richten sich an Technologiefirmen aus Sachsen beziehungsweise Mitteldeutschland und versuchen über zahlreiche Dienstleistungen einen Mehrwert für die beteiligten Unternehmen zu schaffen. Dazu geh\"oren im Allgemeinen:
 
 \begin{itemize}
@@ -31,7 +57,7 @@ Das Unternehmen wurde 2008 von Dr. Jörg Klukas gegründet und hat als Ziel, den
 \end{itemize}
 
 \subsection{Ziel}
-Alle Communities sind zum heutigen Zeitpunkt durch das Content Management System Drupal 5 realisiert. Drupal 5 ist mittlerweile schon vier Jahre alt und nicht mehr auf dem neuesten Entwicklungsstand der Web Performance. Es gibt Drupal mittlerweile schon in der Version 7.7 und viele Verbesserungen in Sachen Geschwindigkeit wurden seither realisiert. Leider ist es nicht trivial ein Upgrade durchzuführen, da viele Strukturen sich stark verändert haben. Aus diesem Grund wurde der Autor damit beauftragt, die Möglichkeiten einer Drupal 5 Optimierung am Beispiel der ältesten Community ITsax.de zu ergründen und, wenn vorhanden, durchzuführen. Dabei soll ein Leitfaden entwickelt werden, anhand dessen Drupal 5 und allgemein Webseiten effizient optimiert werden können.
+Alle Communities sind zum heutigen Zeitpunkt durch das Content-Management-System Drupal 5 realisiert. Drupal 5 ist mittlerweile schon vier Jahre alt und nicht mehr auf dem neuesten Entwicklungsstand der Web-Performance. Es gibt Drupal mittlerweile schon in der Version 7.7 und viele Verbesserungen in Sachen Geschwindigkeit wurden seither realisiert. Leider ist es nicht trivial ein Upgrade durchzuführen, da viele Strukturen sich stark verändert haben. Aus diesem Grund wurde der Autor damit beauftragt, die Möglichkeiten einer Drupal 5 Optimierung am Beispiel der ältesten Community ITsax.de zu ergründen und, wenn vorhanden, durchzuführen. Dabei soll ein Leitfaden entwickelt werden, anhand dessen Drupal 5 und allgemein Webseiten effizient optimiert werden können.
 
 \section{Aufbau}
 Die Arbeit ist in zwei Teile aufgeteilt. Der Theorieteil beschäftigt sich mit den Grundlagen der Web Performance beziehungsweise der Web Performance Optimierung. Im Anschluss daran werden im Praxisteil Performancemängel der Webseite ITsax.de untersucht und, sofern vorhanden, behoben. 
