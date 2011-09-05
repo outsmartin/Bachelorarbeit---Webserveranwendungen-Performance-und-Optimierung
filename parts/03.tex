@@ -88,8 +88,7 @@ Leicht zu erkennen ist, dass der HTML Anteil, sowohl bei der Größe als auch be
 
 %TODO TABELLE!
 
-
-\begin{minipage}[t]{1\textwidth}
+\begin{minipage}[t]{\textwidth}
 \begin{lstlisting}[language=bash,label=Startwerte gemessen mit ab,caption=Startwerte gemessen mit ab]
 Server Software:        Apache/2.2.16
 Server Hostname:        itsax.it-jobs-und-stellen.deDocument Path:          /
@@ -142,8 +141,8 @@ Time per request:       233.620 [ms] (mean, across all concurrent requests)
 Transfer rate:          272.69 [kBytes/sec] received
 \end{lstlisting}
 \end{minipage}
-\subsection{Drupal Cache}Der Drupal Cache wurde mit Version 5 eingef\"uhrt und kann \"uber das Administrationsinterface aktiviert werden. Durch ihn wird ein Caching aller Seiten ausgel\"ost. Dabei werden die fertig berechneten Webseiten beim ersten Aufruf komplett in der Datenbank abgelegt. Wenn eine schon gecachte Seite aufgerufen wird, muss nur noch der fertige HTML-Code aus der Datenbank geholt werden. Diese Methode ist aber zu unflexibel, da nicht konfigurierbar ist, welche Seiten gecacht werden sollen. F\"ur die Webseite ITsax.de m\"ussen aber dynamische Inhalte ungecacht bleiben. Testweise wurde der Cache aktiviert und mit "`ab"' getestet. Die Ergebnisse sind in folgender Ausgabe zu sehen. 
 
+\subsection{Drupal Cache}Der Drupal Cache wurde mit Version 5 eingef\"uhrt und kann \"uber das Administrationsinterface aktiviert werden. Durch ihn wird ein Caching aller Seiten ausgel\"ost. Dabei werden die fertig berechneten Webseiten beim ersten Aufruf komplett in der Datenbank abgelegt. Wenn eine schon gecachte Seite aufgerufen wird, muss nur noch der fertige HTML-Code aus der Datenbank geholt werden. Diese Methode ist aber zu unflexibel, da nicht konfigurierbar ist, welche Seiten gecacht werden sollen. F\"ur die Webseite ITsax.de m\"ussen aber dynamische Inhalte ungecacht bleiben. Testweise wurde der Cache aktiviert und mit "`ab"' getestet. Die Ergebnisse sind in folgender Ausgabe zu sehen. 
 \begin{minipage}[t]{1\textwidth}
 \begin{lstlisting}[language=bash,label=Drupal Cache gemessen mit ab,caption=Drupal Cache gemessen mit ab]
 Server Software:        Apache/2.2.16
@@ -166,7 +165,6 @@ Time per request:       41.638 [ms] (mean, across all concurrent requests)
 Transfer rate:          1537.09 [kBytes/sec] received
 \end{lstlisting}
 \end{minipage}
-
 Die Zeit pro Anfrage wird deutlich kleiner und es wird klar, dass Caching f\"ur den serverseitigen Teil die gr\"o\ss{}ten Verbesserungen bringt. Die PHP-Codeausführung kann auf ein notwendiges Minimum, dass heisst auf die Momente in denen der Cache neu geschrieben wird, reduziert werden. So kann zumindest der zu berechnende HTML-Code direkt ausgeliefert werden.
 
 \subsection{JS Aggregation und Minifizierung mit dem Javascript Aggregation Modul}
@@ -252,12 +250,10 @@ Technisch wird eine verlustfreie Kompression durch Verfahren wie die Huffman-Cod
 %TODO quelle
 
 Die Befehle sehen dann wie folgt aus:
-\begin{minipage}[t]{1\textwidth}
 \begin{lstlisting}[language=bash,label=verlustfreies Optimieren mit "find",caption= verlustfreies Optimieren mit "find"]
 find . -name "*.png" -exec optipng -o7 {} \;
 find . -name "*.jpg" -exec jpegoptim {} \;
 \end{lstlisting}
-\end{minipage}
 
 Auf jeden Fall sollte eine verlustfreie Komprimierung durchgeführt werden, da die Bilder in diesem Fall nur an Dateigröße verlieren und die Bildqualität unberührt bleibt. 
 
@@ -563,9 +559,7 @@ function partneranzeigen_menu() {
 }
 \end{lstlisting}
 \end{minipage}
-
 Eingefügt wird der HTML Code dann über eine Ajax GET Anfrage. Mit der schon bekannten Timeout Methode.
-
 \begin{minipage}[t]{1\textwidth}
 \begin{lstlisting}[language=php,label=Ajax - GET,caption=Ajax - GET]
 function delayed_partneranzeigen(){
@@ -574,7 +568,6 @@ function delayed_partneranzeigen(){
 });
 \end{lstlisting}
 \end{minipage}
-
 Obwohl die Seite um 31 kB kleiner geworden ist und zwei HTTP Anfragen eingespart werden, wird sie, wie schon erwähnt, langsamer.
 \begin{table}
 \caption{Ergebnis der Umprogrammierung des Partneranzeigen-Moduls}
@@ -596,8 +589,6 @@ Obwohl die Seite um 31 kB kleiner geworden ist und zwei HTTP Anfragen eingespart
 %\#Requests: 105 (108)
 %Bytes In: 417 kB (448)
 %http://www.webpagetest.org/result/110815_N6_1AWKT/1/details/
-
-
 \section{Endergebnis} 
 Nach der Zusammenführung aller Optimierungen wurde die Webseite erneut getestet. Das Wasserfalldiagramm der optimierten Webseite ist in Abbildung \ref{fig:endwaterfall} dargestellt. 
 \begin{figure}[!ht]
@@ -606,7 +597,7 @@ Nach der Zusammenführung aller Optimierungen wurde die Webseite erneut getestet
   \caption{Wasserfalldiagramm: Optimierte Webseite}
   \label{fig:endwaterfall}
 \end{figure}
-Nach nur einer Sekunde fängt der Browser an die Seite darzustellen. 2,913 Sekunden werden benötigt bis alle asynchronen Inhalte verfügbar sind. Die Webseitengröße wurde auf 138 kB komprimiert. Daher können auch langsame Internetverbindungen die Seite schnell laden. Von den 107 HTTP Anfragen sind nur noch 67 übrig geblieben, von denen aber lediglich 25 vor dem Onload-Event ben\"otigt werden. Dank dieser Reduzierung auf das Wesentliche erwartet den Besucher nun eine subjektiv wesentlich angenehmere Webseite. 
+Nach nur einer Sekunde fängt der Browser an die Seite darzustellen. 2,913 Sekunden werden benötigt bis alle asynchronen Inhalte verfügbar sind. Die Webseitengröße wurde auf 138 kB komprimiert. Daher können auch langsame Internetverbindungen die Seite schnell laden. Von den 107 HTTP Anfragen sind nur noch 67 übrig geblieben, von denen aber lediglich 25 vor dem Onload-Event ben\"otigt werden. Dank dieser Reduzierung auf das Wesentliche erwartet den Besucher nun eine subjektiv wesentlich angenehmere Webseite.
 %http://www.webpagetest.org/result/110825_5J_1DQHK/
 \section{Vergleich}
 Ein abschlie\ss{}ender Vergleich aller Methoden wurde tabellarisch zusammengetragen. In der ersten Spalte steht der Methodenname, darauf folgen die Gesamtladezeit und die Zeit, die der Nutzer warten muss bis der Browser anf\"angt Inhalte darzustellen. Zu jedem Ergebnis wird noch eine Einsch\"atzung abgegeben. Abschlies\ss{}end wurde das Gesamtergebnis in der letzten Zeile dargestellt.

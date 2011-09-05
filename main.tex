@@ -13,8 +13,7 @@
 \usepackage{graphicx}	%including images
 \usepackage{fancyhdr}	%for editiable headers and footers
 \usepackage{setspace} 	%for 1,5times row space
-\usepackage[colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black] {hyperref}	
-			%clickable TOC
+\usepackage[colorlinks,pdfpagelabels,pdfstartview = FitH,bookmarksopen = true,bookmarksnumbered = true,linkcolor = black,plainpages = false,hypertexnames = false,citecolor = black, linkcolor=black, menucolor=black, pagecolor=black, urlcolor=black] {hyperref}	
 \usepackage{multirow}	%linebreak in Table
 \usepackage{enumerate}
 \usepackage{float}
@@ -91,10 +90,10 @@ frame=single
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
  %\maketitle
- \include{parts/00-frontpage}
- \tableofcontents		%Inhaltsverzeichnis
- \include{parts/01}
- \include{parts/02}
+ %\include{parts/00-frontpage}
+ %\tableofcontents		%Inhaltsverzeichnis
+ %\include{parts/01}
+ %\include{parts/02}
  \include{parts/03}
  \include{parts/99-appendix}
 \end{document}
