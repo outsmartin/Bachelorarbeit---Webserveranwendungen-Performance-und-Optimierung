@@ -1,50 +1,50 @@
-\BOOKMARK [0][]{part.2}{I Einleitung}{}
-\BOOKMARK [1][]{section.3}{1 Motivation}{part.2}
-\BOOKMARK [2][]{subsection.4}{1.1 pludoni GmbH}{section.3}
-\BOOKMARK [2][]{subsection.5}{1.2 Ziel}{section.3}
-\BOOKMARK [1][]{section.6}{2 Aufbau}{part.2}
-\BOOKMARK [0][]{part.7}{II Theoretische Grundlagen}{}
-\BOOKMARK [1][]{section.8}{3 Technologiestack}{part.7}
-\BOOKMARK [1][]{section.11}{4 Methoden der Web-Performance-Optimierung}{part.7}
-\BOOKMARK [1][]{section.14}{5 Einordnung von Performanzproblemen}{part.7}
-\BOOKMARK [2][]{subsection.15}{5.1 Clientseitige Probleme}{section.14}
-\BOOKMARK [3][]{subsubsection.16}{5.1.1 Netzwerkverbindung}{subsection.15}
-\BOOKMARK [3][]{subsubsection.20}{5.1.2 Browser}{subsection.15}
-\BOOKMARK [2][]{subsection.29}{5.2 Serverseitige Probleme}{section.14}
-\BOOKMARK [3][]{subsubsection.30}{5.2.1 Netzwerkverbindung}{subsection.29}
-\BOOKMARK [3][]{subsubsection.31}{5.2.2 Datenbankabfragen}{subsection.29}
-\BOOKMARK [3][]{subsubsection.32}{5.2.3 Skriptausf\374hrung}{subsection.29}
-\BOOKMARK [3][]{subsubsection.33}{5.2.4 Skriptkompilierung}{subsection.29}
-\BOOKMARK [1][]{section.34}{6 Wirtschaftliche Aspekte}{part.7}
-\BOOKMARK [2][]{subsection.35}{6.1 Usability}{section.34}
-\BOOKMARK [2][]{subsection.36}{6.2 Google Ranking}{section.34}
-\BOOKMARK [2][]{subsection.38}{6.3 Serverlast}{section.34}
-\BOOKMARK [0][]{part.41}{III Praxisteil}{}
-\BOOKMARK [1][]{section.42}{7 Versuchsaufbau}{part.41}
-\BOOKMARK [1][]{section.43}{8 Testverfahren}{part.41}
-\BOOKMARK [2][]{subsection.45}{8.1 Servertest}{section.43}
-\BOOKMARK [2][]{subsection.48}{8.2 Browsertest}{section.43}
-\BOOKMARK [2][]{subsection.54}{8.3 Andere Analyse Verfahren}{section.43}
-\BOOKMARK [1][]{section.55}{9 Ausgangszustand}{part.41}
-\BOOKMARK [1][]{section.75}{10 Implementierung und Test der einzelnen Methoden}{part.41}
-\BOOKMARK [2][]{subsection.76}{10.1 APC}{section.75}
+\BOOKMARK [0][]{part.4}{I Einleitung}{}
+\BOOKMARK [1][]{section.5}{1 Motivation}{part.4}
+\BOOKMARK [2][]{subsection.6}{1.1 pludoni GmbH}{section.5}
+\BOOKMARK [2][]{subsection.7}{1.2 Ziel}{section.5}
+\BOOKMARK [1][]{section.8}{2 Aufbau}{part.4}
+\BOOKMARK [0][]{part.9}{II Theoretische Grundlagen}{}
+\BOOKMARK [1][]{section.10}{3 Technische Voraussetzungen}{part.9}
+\BOOKMARK [1][]{section.12}{4 Methoden der Web-Performance-Optimierung}{part.9}
+\BOOKMARK [1][]{section.16}{5 Einordnung von Performanzproblemen}{part.9}
+\BOOKMARK [2][]{subsection.17}{5.1 Clientseitige Probleme}{section.16}
+\BOOKMARK [3][]{subsubsection.18}{5.1.1 Netzwerkverbindung}{subsection.17}
+\BOOKMARK [3][]{subsubsection.22}{5.1.2 Browser}{subsection.17}
+\BOOKMARK [2][]{subsection.31}{5.2 Serverseitige Probleme}{section.16}
+\BOOKMARK [3][]{subsubsection.32}{5.2.1 Netzwerkverbindung}{subsection.31}
+\BOOKMARK [3][]{subsubsection.33}{5.2.2 Datenbankabfragen}{subsection.31}
+\BOOKMARK [3][]{subsubsection.34}{5.2.3 Skriptausf\374hrung}{subsection.31}
+\BOOKMARK [3][]{subsubsection.35}{5.2.4 Kompilierung}{subsection.31}
+\BOOKMARK [1][]{section.36}{6 Wirtschaftliche Aspekte}{part.9}
+\BOOKMARK [2][]{subsection.37}{6.1 Usability}{section.36}
+\BOOKMARK [2][]{subsection.38}{6.2 Google Ranking}{section.36}
+\BOOKMARK [2][]{subsection.40}{6.3 Serverlast}{section.36}
+\BOOKMARK [0][]{part.42}{III Praxisteil}{}
+\BOOKMARK [1][]{section.43}{7 Versuchsaufbau}{part.42}
+\BOOKMARK [1][]{section.44}{8 Testverfahren}{part.42}
+\BOOKMARK [2][]{subsection.46}{8.1 Servertest}{section.44}
+\BOOKMARK [2][]{subsection.49}{8.2 Browsertest}{section.44}
+\BOOKMARK [2][]{subsection.54}{8.3 Andere Analyseverfahren}{section.44}
+\BOOKMARK [1][]{section.55}{9 Ausgangszustand}{part.42}
+\BOOKMARK [1][]{section.75}{10 Implementierung und Test der einzelnen Methoden}{part.42}
+\BOOKMARK [2][]{subsection.76}{10.1 Alternative PHP Cache}{section.75}
 \BOOKMARK [2][]{subsection.100}{10.2 Drupal Cache}{section.75}
 \BOOKMARK [2][]{subsection.120}{10.3 JS Aggregation und Minifizierung mit dem Javascript Aggregation Modul}{section.75}
-\BOOKMARK [2][]{subsection.121}{10.4 CSS Aggregation und Komprimierung}{section.75}
-\BOOKMARK [2][]{subsection.122}{10.5 Drupal Boost Module}{section.75}
-\BOOKMARK [2][]{subsection.124}{10.6 Bildkompression mit jpegoptim und OptiPNG}{section.75}
-\BOOKMARK [3][]{subsubsection.125}{10.6.1 Verlustfreie Kompression}{subsection.124}
-\BOOKMARK [3][]{subsubsection.129}{10.6.2 Verlustbehaftete Kompression}{subsection.124}
-\BOOKMARK [2][]{subsection.133}{10.7 Drupal 5 Fehler bei umgef\344rbten Themes}{section.75}
-\BOOKMARK [2][]{subsection.134}{10.8 Theme Bilder spriten}{section.75}
-\BOOKMARK [2][]{subsection.135}{10.9 Module von Startseite entfernen}{section.75}
-\BOOKMARK [3][]{subsubsection.136}{10.9.1 Partnerslideshow}{subsection.135}
-\BOOKMARK [3][]{subsubsection.137}{10.9.2 Facebook Widget}{subsection.135}
-\BOOKMARK [3][]{subsubsection.138}{10.9.3 Jobleiste deaktiviert}{subsection.135}
-\BOOKMARK [2][]{subsection.139}{10.10 Umprogrammierung der Module}{section.75}
-\BOOKMARK [3][]{subsubsection.140}{10.10.1 Partnerslideshow}{subsection.139}
-\BOOKMARK [3][]{subsubsection.160}{10.10.2 Facebook Widget}{subsection.139}
-\BOOKMARK [3][]{subsubsection.176}{10.10.3 Partneranzeigen}{subsection.139}
-\BOOKMARK [1][]{section.194}{11 Endergebnis}{part.41}
-\BOOKMARK [1][]{section.196}{12 Vergleich}{part.41}
-\BOOKMARK [1][]{section.198}{13 Zusammenfassung und Ausblick}{part.41}
+\BOOKMARK [2][]{subsection.122}{10.4 CSS Aggregation und Komprimierung}{section.75}
+\BOOKMARK [2][]{subsection.123}{10.5 Drupal Boost Modul}{section.75}
+\BOOKMARK [2][]{subsection.125}{10.6 Bildkompression mit jpegoptim und OptiPNG}{section.75}
+\BOOKMARK [3][]{subsubsection.126}{10.6.1 Verlustfreie Kompression}{subsection.125}
+\BOOKMARK [3][]{subsubsection.130}{10.6.2 Verlustbehaftete Kompression}{subsection.125}
+\BOOKMARK [2][]{subsection.134}{10.7 Drupal 5 Fehler bei umgef\344rbten Themes}{section.75}
+\BOOKMARK [2][]{subsection.135}{10.8 Theme Bilder spriten}{section.75}
+\BOOKMARK [2][]{subsection.136}{10.9 Module von Startseite entfernen}{section.75}
+\BOOKMARK [3][]{subsubsection.137}{10.9.1 Partnerslideshow}{subsection.136}
+\BOOKMARK [3][]{subsubsection.138}{10.9.2 Facebook Widget}{subsection.136}
+\BOOKMARK [3][]{subsubsection.139}{10.9.3 Jobleiste deaktiviert}{subsection.136}
+\BOOKMARK [2][]{subsection.140}{10.10 Umprogrammierung der Module}{section.75}
+\BOOKMARK [3][]{subsubsection.141}{10.10.1 Partnerslideshow}{subsection.140}
+\BOOKMARK [3][]{subsubsection.161}{10.10.2 Facebook Widget}{subsection.140}
+\BOOKMARK [3][]{subsubsection.177}{10.10.3 Partneranzeigen}{subsection.140}
+\BOOKMARK [1][]{section.195}{11 Endergebnis}{part.42}
+\BOOKMARK [1][]{section.198}{12 Vergleich}{part.42}
+\BOOKMARK [1][]{section.200}{13 Zusammenfassung und Ausblick}{part.42}
