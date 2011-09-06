@@ -317,8 +317,7 @@ Da im Web kein besonders hoher Detailgrad gewährleistet werden muss, ist auch e
 
 \begin{minipage}[t]{1\textwidth}
 \begin{lstlisting}[language=bash,label=verlustbehaftets Optimieren mit find,caption= verlustbehaftetes Optimieren mit find]
-find . -name "*.png" -exec optipng -o7 {} \;
-find . -name "*.jpg" -exec jpegoptim {} \;
+find . -name "*.jpg" -exec jpegoptim -m50 {} \;
 \end{lstlisting}
 \end{minipage}
 
@@ -387,6 +386,7 @@ Spriting wurde ursprünglich in der Videospielentwicklung verwendet, um Bilder i
     \hline
     \end{tabular}
 \end{table}
+
 %Load Time: 3.707
 %Time to First Byte: 0.669s %!
 %Time to Start Render: 1.968s
