@@ -370,7 +370,32 @@ Das Framework Drupal 5 benutzt Themes zur Gestaltung der Oberfläche. Um diese f
 %http://www.webpagetest.org/result/110809_SZ_19APH/
 
 \subsection{Theme Bilder spriten}
-Spriting wurde ursprünglich in der Videospielentwicklung verwendet, um Bilder in den Grafikspeicher zu laden. In der Webentwicklung ist es eine effektive Technik, um Bilder ohne mehrfachen Overhead zu laden. Beim Spriting wird aus vielen Einzelbildern eine Gesamtgrafik erstellt. Um auf die Ursprungsbilder dann einzeln zugreifen zu können, werden CSS Befehle genutzt, die es ermöglichen, die Größe und die Position eines Bildausschnittes anzuzeigen. 
+Spriting wurde ursprünglich in der Videospielentwicklung verwendet, um Bilder in den Grafikspeicher zu laden. In der Webentwicklung ist es eine effektive Technik, um Bilder ohne mehrfachen Overhead zu laden. Beim Spriting wird aus vielen Einzelbildern eine Gesamtgrafik erstellt. Um auf die Ursprungsbilder dann einzeln zugreifen zu können, werden CSS Befehle genutzt, die es ermöglichen, die Größe und die Position eines Bildausschnittes anzuzeigen. Ein Ausschnitt der CSS-Datei ist in folgendem Code zu sehen.
+
+\begin{minipage}[t]{1\textwidth}
+\begin{lstlisting}[language=bash,label=CSS-Spriting,caption=CSS-Spriting]
+ul li, ul.menu li, .item-list ul li, li.leaf {
+  margin: 0.15em 0 0.15em .5em;
+  padding: 0 0 .2em 1.5em;
+  list-style-type: none;
+  list-style-image: none;
+  background: transparent url(images/garland-sprites.png) no-repeat 1px .35em;
+  background-position:0 -159px;
+}
+
+ul li.expanded {
+  background-position:0 -119px;
+  height: 10px;
+}
+
+ul li.collapsed {
+  background-position:0 -79px;
+}
+
+\end{lstlisting}
+\end{minipage}
+
+Im ersten Block wird das gespritete Bild eingebunden. Mit Hilfe von background-position kann dann der Bildausschnitt verschoben werden. Die H\"ohenangabe bewirkt, dass nur der gew\"unschte Ausschnitt angezeigt wird.
 
 \begin{table}[!ht]
 \centering
@@ -577,7 +602,7 @@ Wieder wird als initialer Rückgabewert nur ein leeres DIV-Element ausgegeben. D
 \subsubsection{Partneranzeigen}
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=1.1\textwidth]{material/partneranzeigen.png}
+  \includegraphics[width=\textwidth]{material/partneranzeigen.png}
   \caption{Partneranzeigen Block}
   \label{fig:partneranzeigen}
 \end{figure}
